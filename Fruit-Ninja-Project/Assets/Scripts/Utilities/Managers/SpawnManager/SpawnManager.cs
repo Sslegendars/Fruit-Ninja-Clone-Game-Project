@@ -6,10 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     private Collider spawnArea;
 
-    public GameObject[] fruitPrefabs;
-    /*public GameObject bombPrefab;
-    [Range(0f, 1f)]
-    public float bombChance = 0.05f;*/
+    public GameObject[] fruitPrefabs;    
 
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
@@ -41,12 +38,7 @@ public class SpawnManager : MonoBehaviour
 
         while (enabled)
         {
-            //RandomFruitPrefab();
-
-            /* if (Random.value < bombChance)
-             {
-                 prefab = bombPrefab;
-             }*/
+            
             SpawnFruitPrefab();           
 
             yield return new WaitForSeconds(RandomSpawnDelay());
