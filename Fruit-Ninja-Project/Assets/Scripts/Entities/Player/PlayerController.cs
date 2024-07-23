@@ -1,51 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    /*private Camera mainCamera;
-    [SerializeField]
     private Blade _blade;
-    private void Awake()
+    private PlayerLives playerLives;
+
+    public Blade Blade
     {
-        mainCamera = Camera.main;
+        get => _blade;
+        set
+        {
+            _blade = value;            
+        }
+    }
+    public PlayerLives PlayerLives
+    {
+        get => playerLives;
+        set
+        {
+            playerLives = value;
+        }
     }
     private void Update()
     {
-        CheckInput();
+        InputBehaviourCondition();
+        
     }
-    private void CheckInput()
+    private void InputBehaviourCondition()
     {
-        *//*if(Input.touchCount > 0)
+        if (playerLives.Lives > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
-            {
-                 _blade.StartSlice();
-            }
-            else if(touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-            {
-                 _blade.StopSlice();
-            }
-            else if (_blade.Slicing)
-            {
-                 _blade.ContinueSlice();
-            }
-        }*//*
-
-        // Fare kontrollerini de desteklemek için
+            HandleInput();
+        }
+    }
+    private void HandleInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
-            _blade.StartSlice();
+            _blade.StartSlicing();
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            _blade.StopSlice();
+            _blade.StopSlicing();
         }
         else if (_blade.Slicing)
         {
-            _blade.ContinueSlice();
+            _blade.ContinueSlicing();
         }
-    }*/
+    }
 }

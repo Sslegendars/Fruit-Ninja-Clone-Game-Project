@@ -2,57 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : MonoSingleton<SpawnManager>
 {
     private Collider spawnArea;
 
-    public GameObject[] fruitPrefabs;    
+    public GameObject[] fruitPrefabs;
+
+    public GameObject bombPrefab;
 
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
     public float minAngle = -15f;
     public float maxAngle = 15f;
-
     
-
-
+    private const float bombChance = 0.05f;   
     private void Awake()
     {
         spawnArea = GetComponent<Collider>();
     }
-
     private void OnEnable()
     {
         StartCoroutine(Spawn());
     }
-
     private void OnDisable()
     {
         StopAllCoroutines();
-    }
-    
+    }    
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
 
         while (enabled)
-        {
-            
-            SpawnFruitPrefab();           
-
+        {            
+            SpawnPrefab();         
             yield return new WaitForSeconds(RandomSpawnDelay());
         }
     }
-    private void SpawnFruitPrefab()
+    private void SpawnPrefab()
     {
-        Instantiate(RandomFruitPrefab(), RandomPosition(), RandomRotation());
-    }
-    private GameObject RandomFruitPrefab()
+        Instantiate(RandomPrefab(), RandomPosition(), RandomRotation());
+    }    
+    private GameObject RandomPrefab()
     {
-        GameObject randomFruitPrefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
-        return randomFruitPrefab;
-    }
+        GameObject randomPrefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
+        if (Random.value < bombChance)
+        {
+            randomPrefab = bombPrefab;            
+        }
+        return randomPrefab;
+    }    
     private Vector3 RandomPosition()
     {
         Vector3 randomPosition = new Vector3

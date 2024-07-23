@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Blade : MonoBehaviour
-{
+{   
     private Camera mainCamera;
-    private bool slicing;
     private Collider bladeCollider;
     private TrailRenderer bladeTrail;
-
-    public Vector3 direction { get; private set; }
+    
     public float sliceForce = 5f;
     public float minSliceVelocity = 0.01f;
-    private void Awake()
+
+    public bool Slicing { get; private set; }
+    public Vector3 direction { get; private set; }
+    public Camera MainCamera
     {
-        mainCamera = Camera.main;
-        bladeCollider = GetComponent<Collider>();
-        bladeTrail = GetComponentInChildren<TrailRenderer>();
+        get => mainCamera;
+        set => mainCamera = value;
     }
+
+    public Collider BladeCollider
+    {
+        get => bladeCollider;
+        set => bladeCollider = value;
+    }
+
+    public TrailRenderer BladeTrail
+    {
+        get => bladeTrail;
+        set => bladeTrail = value;
+    }
+
     private void OnEnable()
     {
         StopSlicing();
@@ -25,39 +38,23 @@ public class Blade : MonoBehaviour
     private void OnDisable()
     {
         StopSlicing();
-    }
-   
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartSlicing();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopSlicing();
-        }
-        else if(slicing)
-        {
-            ContinueSlicing();
-        }
-
-    }
-    private void StartSlicing()
+    }  
+    
+    public void StartSlicing()
     {
         Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         newPosition.z = -2f;
         transform.position = newPosition;
-        slicing = true;
+        Slicing = true;
         bladeCollider.enabled = true;
         bladeTrail.Clear();
     }
-    private void StopSlicing()
+    public void StopSlicing()
     {
-        slicing = false;
+        Slicing = false;
         bladeCollider.enabled = false;
     }
-    private void ContinueSlicing()
+    public void ContinueSlicing()
     {
         Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         newPosition.z = -2f;

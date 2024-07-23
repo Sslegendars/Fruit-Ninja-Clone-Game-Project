@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class FruitInitializer : MonoBehaviour
@@ -8,6 +7,7 @@ public class FruitInitializer : MonoBehaviour
     private Collider fruitCollider;
     public FruitMovement fruitMovement;
     public FruitController fruitController;
+    public GameObject fruitJuice;
     private void Awake()
     {
         InitializeComponents();
@@ -17,6 +17,6 @@ public class FruitInitializer : MonoBehaviour
         fruitCollider = GetComponent<Collider>();
         fruitRigidbody = GetComponent<Rigidbody>();
         fruitMovement.Initialize(fruitRigidbody);
-        fruitController.Initialize(fruitCollider, fruitMovement);
+        fruitController.Initialize(fruitCollider, fruitMovement,fruitJuice);
     }
 }
