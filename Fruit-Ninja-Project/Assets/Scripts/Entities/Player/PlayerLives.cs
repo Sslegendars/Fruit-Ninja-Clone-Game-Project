@@ -30,7 +30,7 @@ public class PlayerLives : MonoBehaviour
 
     private void UpdateLivesWhenGameStarted()
     {
-        Lives = 3;
+        Lives = 100;
         UIManager.Instance.UpdateLivesText(Lives);
     }
 }

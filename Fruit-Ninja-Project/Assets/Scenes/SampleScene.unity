@@ -1238,10 +1238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fruitPrefabs:
-  - {fileID: 8047881388016275576, guid: a8185bcf5f23a5546a82763aa6b7b9fc, type: 3}
+  - {fileID: 1296988660048730133, guid: 79f95f931fecdcc4595fc3d759ce4da8, type: 3}
   - {fileID: 5368679038040686308, guid: ab524d5ee46ded54381590f9a44af3fd, type: 3}
-  - {fileID: 8952038618277441475, guid: 694c1f2d5dcdbb640835506ee57545b0, type: 3}
-  - {fileID: 1044333005340112666, guid: d209550617a18df41bee38232e1aef3a, type: 3}
+  - {fileID: 352097922501411189, guid: 98640ce923d4d1d4ea326adfa13d9d9b, type: 3}
+  - {fileID: 1057494308674877758, guid: 160a939426449ea4cb16b92c7d04fc7d, type: 3}
   - {fileID: 6852849589647806513, guid: 7bdfd64f706db1c44b7b14dd54725077, type: 3}
   bombPrefab: {fileID: 4473449225418355192, guid: c8eafb37041b41c45bcc6a8be84a1bbf, type: 3}
   minSpawnDelay: 0.25
@@ -1743,7 +1743,7 @@ Transform:
   m_GameObject: {fileID: 1232960357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88, y: 0.41, z: -2}
+  m_LocalPosition: {x: 5.66, y: 0.443, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

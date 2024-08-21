@@ -11,6 +11,8 @@ public class FruitController : MonoBehaviour
     private Collider fruitCollider;
     private GameObject fruitJuice;    
     private const float maxLifeTime = 5f;
+    private bool isFruitSliced = false;
+    
     public void Initialize(Collider fruitCollider, FruitMovement fruitMovement, GameObject fruitJuice)
     {
         this.fruitCollider = fruitCollider;
@@ -19,15 +21,11 @@ public class FruitController : MonoBehaviour
     }
     private void Start()
     {
-        MakeFruitDynamicRigidbody();
-        ActiveWholeFruit();
-        DeactiveSlicedFruit();
-        DeactiveFruitJuice();
-        EnableFruitCollider();
-        DestroFruitDepentOnTime();        
+        InitializeComponents(); 
     }
     private void Update()
     {
+        FruitMovementWhenGameIsPlay();    
         DestroyFruitObjectWhenGameIsOver();
     }
     private void OnTriggerEnter(Collider other)
@@ -52,12 +50,22 @@ public class FruitController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    protected virtual void InitializeComponents()
+    {        
+        MakeFruitDynamicRigidbody();
+        FruitMovementWhenGameIsStart();
+        ActiveWholeFruit();
+        DeactiveSlicedFruit();
+        DeactiveFruitJuice();
+        EnableFruitCollider();
+        DestroFruitDepentOnTime();
+    }   
     private void HandleBladeCollision(Collider bladeCollider)
-    {
-        Blade blade = bladeCollider.GetComponent<Blade>();
-       
+    {       
+        Blade blade = bladeCollider.GetComponent<Blade>();       
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
         GameManager.Instance.UpdateScore(1);
+        isFruitSliced = true;
     }
     private void HandleBottomBoundCollision()
     {
@@ -76,13 +84,10 @@ public class FruitController : MonoBehaviour
     }   
     private Quaternion RotateObjectAccordingCuttingAngle(Vector3 direction)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //**********************************************
-        //**********************************************
-        //**********************************************
-        // WaterMelon and coconut rotation,on different , need to change
+        float angle = Mathf.Atan2(direction.y, direction.x)  * Mathf.Rad2Deg;
+        Vector3 currentRotation = sliced.transform.rotation.eulerAngles;
+        sliced.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, angle);
         
-        sliced.transform.rotation = Quaternion.Euler(0, 0, angle);      
         return sliced.transform.rotation;        
     }
     private void ApplyForceToSlices(Vector3 direction, Vector3 position, float force)
@@ -92,6 +97,17 @@ public class FruitController : MonoBehaviour
         {
             slice.velocity = fruitMovement.fruitRigidBody.velocity;
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
+        }
+    }
+    private void FruitMovementWhenGameIsStart()
+    {
+        fruitMovement.FruitApplyForce();
+    }
+    private void FruitMovementWhenGameIsPlay()
+    {
+        if (!isFruitSliced)
+        {
+            fruitMovement.FruitRotate();
         }
     }
     private void DeactiveWholeFruit()

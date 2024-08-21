@@ -29,16 +29,7 @@ public class Blade : MonoBehaviour
     {
         get => bladeTrail;
         set => bladeTrail = value;
-    }
-
-    private void OnEnable()
-    {
-        StopSlicing();
-    }
-    private void OnDisable()
-    {
-        StopSlicing();
-    }  
+    }   
     
     public void StartSlicing()
     {

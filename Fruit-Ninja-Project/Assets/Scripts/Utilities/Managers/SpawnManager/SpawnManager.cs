@@ -64,7 +64,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     }
     private Quaternion RandomRotation()
     {
-        Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
+        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));
         return randomRotation;
     }
     private float RandomSpawnDelay()

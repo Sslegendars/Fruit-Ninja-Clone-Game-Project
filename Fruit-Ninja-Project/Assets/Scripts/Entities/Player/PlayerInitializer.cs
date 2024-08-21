@@ -17,11 +17,12 @@ public class PlayerInitializer : MonoBehaviour
     }
     private void InitializeComponents()
     {
-        playerController.Blade = _blade;
-        playerController.PlayerLives = playerLives;
         _blade.MainCamera = mainCamera;
         _blade.BladeCollider = bladeCollider;
         _blade.BladeTrail = bladeTrail;
+        playerController.Blade = _blade;
+        playerController.PlayerLives = playerLives;
+        
     }
 
 
