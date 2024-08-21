@@ -1,17 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitController : MonoBehaviour
-{
-   
+public class FruitController : InteractObjectController
+{   
     public GameObject whole;
     public GameObject sliced;
     private FruitMovement fruitMovement;
     private Collider fruitCollider;
+<<<<<<< Updated upstream:Fruit-Ninja-Project/Assets/Scripts/Entities/Fruits/FruitController.cs
     private GameObject fruitJuice;    
     private const float maxLifeTime = 5f;
     private bool isFruitSliced = false;
+=======
+    private GameObject fruitJuice;
+    private bool isFruitSliced = false;  
+>>>>>>> Stashed changes:Fruit-Ninja-Project/Assets/Scripts/Entities/InteractObject/Fruits/FruitController.cs
     
     public void Initialize(Collider fruitCollider, FruitMovement fruitMovement, GameObject fruitJuice)
     {
@@ -21,6 +23,7 @@ public class FruitController : MonoBehaviour
     }
     private void Start()
     {
+<<<<<<< Updated upstream:Fruit-Ninja-Project/Assets/Scripts/Entities/Fruits/FruitController.cs
         InitializeComponents(); 
     }
     private void Update()
@@ -28,25 +31,32 @@ public class FruitController : MonoBehaviour
         FruitMovementWhenGameIsPlay();    
         DestroyFruitObjectWhenGameIsOver();
     }
+=======
+        MakeFruitDynamicRigidbody();
+        ActiveWholeFruit();
+        DeactiveSlicedFruit();
+        DeactiveFruitJuice();
+        EnableFruitCollider();
+        DestroyGameObjectDepentOnTime();        
+    }
+    private void Update()
+    {
+        DestroyGameObjectWhenGameIsOver();
+        FruitMovementBehaviour();        
+    } 
+>>>>>>> Stashed changes:Fruit-Ninja-Project/Assets/Scripts/Entities/InteractObject/Fruits/FruitController.cs
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Blade"))
-        {
-            HandleBladeCollision(other);
-        }
         if (other.CompareTag("Bottom Bound"))
         {
             HandleBottomBoundCollision();
         }
     }
-    private void DestroFruitDepentOnTime()
-    {
-        Destroy(gameObject, maxLifeTime);
-    }
-    private void DestroyFruitObjectWhenGameIsOver()
-    {
-        if (GameManager.Instance.gameIsOver == true)
+    private void FruitMovementBehaviour()
+    {   
+        if(isFruitSliced == false)
         {
+<<<<<<< Updated upstream:Fruit-Ninja-Project/Assets/Scripts/Entities/Fruits/FruitController.cs
             Destroy(gameObject);
         }
     }
@@ -67,27 +77,39 @@ public class FruitController : MonoBehaviour
         GameManager.Instance.UpdateScore(1);
         isFruitSliced = true;
     }
+=======
+            fruitMovement.InteractObjectMovement();
+        }       
+    }   
+   
+>>>>>>> Stashed changes:Fruit-Ninja-Project/Assets/Scripts/Entities/InteractObject/Fruits/FruitController.cs
     private void HandleBottomBoundCollision()
     {
         PlayerLives playerLives = FindObjectOfType<PlayerLives>();
         playerLives.DecreaseLife();
-    }
-    private void Slice(Vector3 direction, Vector3 position, float force)
-    {
+    }    
+    public void Slice(Vector3 direction, Vector3 position, float force)
+    {        
+        isFruitSliced = true;
         DeactiveWholeFruit();
         ActiveSlicedFruit();
         ActiveFruitJuice();
         MakeFruitKinematicRigidbody();
-        DisableFruitCollider();    
+        DisableFruitCollider();
         RotateObjectAccordingCuttingAngle(direction);
-        ApplyForceToSlices(direction, position, force);        
-    }   
+        ApplyForceToSlices(direction, position, force);       
+    }
     private Quaternion RotateObjectAccordingCuttingAngle(Vector3 direction)
     {
+<<<<<<< Updated upstream:Fruit-Ninja-Project/Assets/Scripts/Entities/Fruits/FruitController.cs
         float angle = Mathf.Atan2(direction.y, direction.x)  * Mathf.Rad2Deg;
         Vector3 currentRotation = sliced.transform.rotation.eulerAngles;
         sliced.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, angle);
         
+=======
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        sliced.transform.rotation = Quaternion.Euler(sliced.transform.rotation.x, sliced.transform.rotation.y, sliced.transform.rotation.z * angle);        
+>>>>>>> Stashed changes:Fruit-Ninja-Project/Assets/Scripts/Entities/InteractObject/Fruits/FruitController.cs
         return sliced.transform.rotation;        
     }
     private void ApplyForceToSlices(Vector3 direction, Vector3 position, float force)
@@ -95,7 +117,7 @@ public class FruitController : MonoBehaviour
         Rigidbody[] slices = sliced.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody slice in slices)
         {
-            slice.velocity = fruitMovement.fruitRigidBody.velocity;
+            slice.velocity = fruitMovement.interactObjectRigidbody.velocity;
             slice.AddForceAtPosition(direction * force, position, ForceMode.Impulse);
         }
     }
@@ -144,11 +166,11 @@ public class FruitController : MonoBehaviour
     }
     private void MakeFruitKinematicRigidbody()
     {
-        fruitMovement.fruitRigidBody.isKinematic = true;
+        fruitMovement.interactObjectRigidbody.isKinematic = true;
     }
     private void MakeFruitDynamicRigidbody()
     {
-        fruitMovement.fruitRigidBody.isKinematic = false;
+        fruitMovement.interactObjectRigidbody.isKinematic = false;
     }    
 
 }

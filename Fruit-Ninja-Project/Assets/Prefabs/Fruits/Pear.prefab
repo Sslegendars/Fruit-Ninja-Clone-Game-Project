@@ -233,10 +233,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134a394ebcff2af4388e9a921d5b0897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   fruitMovement: {fileID: 968862564046880425}
   fruitController: {fileID: 4808095957186771520}
   fruitJuice: {fileID: 6181751178805945628}
 --- !u!114 &4808095957186771520
+=======
+  _movement: {fileID: 7154266962374201857}
+  interactObjectController: {fileID: 2579594588516711023}
+  fruitJuice: {fileID: 5934076626678070770}
+--- !u!114 &2579594588516711023
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,8 +269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea89b59d712cc64faff965b82409016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   fruitRigidBody: {fileID: 0}
 --- !u!1 &1401486301033595122
+=======
+  gameObjectRigidbody: {fileID: 0}
+--- !u!1 &1847084020233447080
+>>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

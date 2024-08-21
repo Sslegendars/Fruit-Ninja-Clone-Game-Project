@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 1320134731585281633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.687}
+  m_LocalPosition: {x: 0, y: 0, z: -0.68700004}
   m_LocalScale: {x: 100.00004, y: 99.999985, z: 125.37468}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3258737114645687983}
+  m_Father: {fileID: 377996041870628799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5968237208836408563
 MeshFilter:
@@ -162,12 +162,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3183500857286044859}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0.648}
   m_LocalScale: {x: 100.00004, y: 99.999985, z: 125.37468}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3258737114645687983}
+=======
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.68}
+  m_LocalScale: {x: 100.00004, y: 99.999985, z: 125.37468}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 377996041870628799}
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &4764074198597812914
 MeshFilter:
@@ -292,15 +301,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4575298287875709246}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5444892945463810434}
-  - {fileID: 8652823609032508365}
+  - {fileID: 377996041870628799}
   m_Father: {fileID: 6385892501548070464}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5851925931226643527
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,8 +492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134a394ebcff2af4388e9a921d5b0897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitMovement: {fileID: 1609722844277508996}
-  fruitController: {fileID: 5637637852896121584}
+  _movement: {fileID: 1609722844277508996}
+  interactObjectController: {fileID: 5637637852896121584}
   fruitJuice: {fileID: 5851925931226643527}
 --- !u!114 &5637637852896121584
 MonoBehaviour:
@@ -513,7 +521,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea89b59d712cc64faff965b82409016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitRigidBody: {fileID: 0}
+  interactObjectRigidbody: {fileID: 0}
+--- !u!1 &8805296652272126556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 377996041870628799}
+  m_Layer: 0
+  m_Name: WaterMelonDownAndup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &377996041870628799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8805296652272126556}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8652823609032508365}
+  - {fileID: 5444892945463810434}
+  m_Father: {fileID: 3258737114645687983}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &9096645769864245967
 GameObject:
   m_ObjectHideFlags: 0

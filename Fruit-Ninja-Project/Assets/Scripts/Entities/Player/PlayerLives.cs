@@ -30,7 +30,11 @@ public class PlayerLives : MonoBehaviour
 
     private void UpdateLivesWhenGameStarted()
     {
+<<<<<<< Updated upstream
         Lives = 100;
+=======
+        Lives = 1000;
+>>>>>>> Stashed changes
         UIManager.Instance.UpdateLivesText(Lives);
     }
 }

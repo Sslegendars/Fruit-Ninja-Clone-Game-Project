@@ -28,12 +28,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4381437480153574724}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.497}
-  m_LocalScale: {x: 59.77227, y: 59.772263, z: 64.19449}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.4970002, y: 0, z: 0}
+  m_LocalScale: {x: 59.77226, y: 59.772263, z: 64.19447}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 271203610503956450}
+  m_Father: {fileID: 2469639754486693732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6435631274344479275
 MeshFilter:
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 7416042752007618703}
   m_Layer: 0
   m_Name: Coconut
-  m_TagString: Untagged
+  m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5368679038040686308}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -172,7 +172,7 @@ Transform:
   - {fileID: 271203610503956450}
   - {fileID: 963188445265539723}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &4174441520053736802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -233,8 +233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134a394ebcff2af4388e9a921d5b0897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitMovement: {fileID: 7416042752007618703}
-  fruitController: {fileID: 8365785314248508970}
+  _movement: {fileID: 7416042752007618703}
+  interactObjectController: {fileID: 8365785314248508970}
   fruitJuice: {fileID: 8458208508024822445}
 --- !u!114 &8365785314248508970
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea89b59d712cc64faff965b82409016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitRigidBody: {fileID: 0}
+  interactObjectRigidbody: {fileID: 0}
 --- !u!1 &6715051202469020961
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,13 +289,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6715051202469020961}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+=======
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 59.77227, y: 59.772263, z: 64.19449}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4836193715485230504}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &197827853377834713
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -370,6 +374,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7468419006025873271}
   serializedVersion: 2
+<<<<<<< Updated upstream
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.014, z: -0.047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2469639754486693732}
+  m_Father: {fileID: 4836193715485230504}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8089738440185741335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2469639754486693732}
+  m_Layer: 0
+  m_Name: CoconutUpAndDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2469639754486693732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8089738440185741335}
+  serializedVersion: 2
+>>>>>>> Stashed changes
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -377,7 +416,7 @@ Transform:
   m_Children:
   - {fileID: 5340464576902574538}
   - {fileID: 8182452750393558893}
-  m_Father: {fileID: 4836193715485230504}
+  m_Father: {fileID: 271203610503956450}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &8458208508024822445
 GameObject:
@@ -491,12 +530,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9165915260741260995}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.292}
-  m_LocalScale: {x: 59.77227, y: 59.772263, z: 64.19449}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.2920001, y: 0, z: 0}
+  m_LocalScale: {x: 59.77226, y: 59.772263, z: 64.19447}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 271203610503956450}
+  m_Father: {fileID: 2469639754486693732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4106531457408351176
 MeshFilter:

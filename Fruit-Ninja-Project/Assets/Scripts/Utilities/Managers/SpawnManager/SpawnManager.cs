@@ -5,9 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoSingleton<SpawnManager>
 {
     private Collider spawnArea;
-
     public GameObject[] fruitPrefabs;
-
     public GameObject bombPrefab;
 
     public float minSpawnDelay = 0.25f;
@@ -41,7 +39,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     }
     private void SpawnPrefab()
     {
-        Instantiate(RandomPrefab(), RandomPosition(), RandomRotation());
+        Instantiate(RandomPrefab(), RandomSpawnPosition(), RandomSpawnRotation());
     }    
     private GameObject RandomPrefab()
     {
@@ -52,19 +50,28 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         }
         return randomPrefab;
     }    
-    private Vector3 RandomPosition()
+    private Vector3 RandomSpawnPosition()
     {
-        Vector3 randomPosition = new Vector3
+        Vector3 randomSpawnPosition = new Vector3
         {
             x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
             y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y),
             z = Random.Range(spawnArea.bounds.min.z, spawnArea.bounds.max.z)
         };
-        return randomPosition;
+        return randomSpawnPosition;
     }
-    private Quaternion RandomRotation()
+    private Quaternion RandomSpawnRotation()
     {
+<<<<<<< Updated upstream
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));
+=======
+         Quaternion randomRotation = Quaternion.AngleAxis(RandomAngle(), Vector3.forward);
+        return randomRotation;
+    }
+    public float RandomAngle()
+    {
+        float randomRotation = Random.Range(minAngle, maxAngle);        
+>>>>>>> Stashed changes
         return randomRotation;
     }
     private float RandomSpawnDelay()
