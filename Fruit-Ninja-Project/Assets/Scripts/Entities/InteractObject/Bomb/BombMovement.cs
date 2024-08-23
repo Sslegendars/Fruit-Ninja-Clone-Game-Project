@@ -1,25 +1,21 @@
 
-public class BombMovement : Movement
+public class BombMovement : InteractObjectMovement
 {
-    private const float xRotation = -90f;
-    private const float yRotation = 0;
-    private const float zRotation = 0;
     protected override void InitializeComponents()
-    {      
-              
-        base.InitializeComponents();
-        //BombRotationWhenSpawned();
+    {
         SetBombRotationDirection();
-        InteractObjectRotationWhenGameIsStart(xRotation, yRotation, zRotation);
-
-
+        base.InitializeComponents();       
     }
     private UnityEngine.Vector3 SetBombRotationDirection()
     {
-        interactObjectRotationDirection = new UnityEngine.Vector3(0, 1, 1);
+        interactObjectRotationDirection = new UnityEngine.Vector3(0, 0, 1);
         return interactObjectRotationDirection;
-    }  
-    
-   
-   
+    }
+    public void ObjectRigidbodyIsKinematic()
+    {
+        interactObjectRigidbody.isKinematic = true;
+    }
+
+
+
 }

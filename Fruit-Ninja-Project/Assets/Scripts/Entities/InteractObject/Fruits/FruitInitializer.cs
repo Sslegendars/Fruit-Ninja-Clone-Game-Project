@@ -10,7 +10,7 @@ public class FruitInitializer : InteractObjectInitializer
     protected override void InitializeComponents()
     {
         base.InitializeComponents();
-        fruitMovement = (FruitMovement)_movement;
+        fruitMovement = (FruitMovement)interactObjectMovement;
         fruitController = (FruitController)interactObjectController;
         fruitMovement.Initialize(interactObjectRigidbody);
         fruitController.Initialize(_collider, fruitMovement,fruitJuice);

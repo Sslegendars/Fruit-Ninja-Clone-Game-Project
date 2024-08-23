@@ -7,39 +7,51 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public bool GameIsOver { get; private set; } = false;
     public ComboSystem comboSystem;
-    public int count;
     public Blade _blade;
     
     public int Score { get; private set; } = 0;
 
     private void Start()
     {
-        GameIsStart();
-        
+        GameIsStart();        
     }
 
     private void Update()
     {
-        count = comboSystem.GetComboCount();
+        CheckHandleCombo();        
+    }
+    private void CheckHandleCombo()
+    {
         if (comboSystem.IsComboActive)
         {
-            comboSystem.UpdateCombo(Time.deltaTime);
+            HandleCombo();
+        }
+    }
+    private void HandleCombo()
+    {
+        comboSystem.UpdateCombo(Time.deltaTime);
 
-            if (!comboSystem.IsComboActive) 
-            {
-                int pointsToAdd = 0;
-                pointsToAdd = comboSystem.GetComboCount() > 2 ? comboSystem.GetComboCount() * 10 : comboSystem.GetComboCount();
-                UpdateScore(pointsToAdd);                
-                UIManager.Instance.ShowComboText(pointsToAdd, _blade.transform.position);
+        if (!comboSystem.IsComboActive)
+        {
+            int pointsToAdd = CalculateComboPoints();
+            UIManager.Instance.ShowComboText(pointsToAdd, _blade.transform.position);
+            UpdateScore(pointsToAdd);
+            comboSystem.ResetCombo();
+        }
+    }
+    private int CalculateComboPoints()
+    {
+        int pointsToAdd = 0;
 
-                comboSystem.ResetCombo();               
-
-            }
+        if (comboSystem.GetComboCount() > comboSystem.minmNumOfFruitsToBeCut)
+        {
+            pointsToAdd = (comboSystem.GetComboCount() - comboSystem.minmNumOfFruitsToBeCut) * 10;
         }
         
+        return pointsToAdd;
     }
    
-    public void OnFruitCut()
+    public void FruitWasCut()
     {
         UpdateScore(1);
         comboSystem.AddToCombo();          
@@ -55,6 +67,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         GameIsOver = true;
         DeactiveSpawnManager();
+        StartCoroutine(ShowGameOverDelay());
+    }
+    private IEnumerator ShowGameOverDelay()
+    {        
+        yield return new WaitForSeconds(1.5f);        
         UIManager.Instance.ShowGameOver();
     }
     public void UpdateScore(int scorePointsToAdd)
@@ -69,5 +86,15 @@ public class GameManager : MonoSingleton<GameManager>
     private void DeactiveSpawnManager()
     {
         SpawnManager.Instance.gameObject.SetActive(false);
+    }
+    public void RestartTheGame()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+        UIManager.Instance.HideGameOver();
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

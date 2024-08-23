@@ -11,8 +11,8 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
-    public float minAngle = -15f;
-    public float maxAngle = 15f;
+    public float minAngle = -10f;
+    public float maxAngle = 10f;
     
     private const float bombChance = 0.05f;   
     private void Awake()
@@ -62,18 +62,15 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     }
     private Quaternion RandomSpawnRotation()
     {
-<<<<<<< Updated upstream
-        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));
-=======
-         Quaternion randomRotation = Quaternion.AngleAxis(RandomAngle(), Vector3.forward);
+        Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));       
         return randomRotation;
     }
-    public float RandomAngle()
+    /*public float RandomAngle()
     {
         float randomRotation = Random.Range(minAngle, maxAngle);        
 >>>>>>> Stashed changes
         return randomRotation;
-    }
+    }*/
     private float RandomSpawnDelay()
     {
         float randomSpawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay);

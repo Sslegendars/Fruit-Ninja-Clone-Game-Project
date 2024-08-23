@@ -30,37 +30,12 @@ public class Blade : MonoBehaviour
     {
         get => bladeTrail;
         set => bladeTrail = value;
-<<<<<<< Updated upstream
-    }   
-    
-=======
+
     }
-   
-    private void OnEnable()
+    private void Start()
     {
         StopSlicing();
-        //GameManager.Instance.comboSystem.Update();
-        
-    }
-    private void OnDisable()
-    {
-        StopSlicing();
-        //GameManager.Instance.comboSystem.ResetCombo();
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Fruit"))
-        {
-            FruitController fruitController = other.GetComponent<FruitController>();
-            fruitController.Slice(direction, gameObject.transform.position, sliceForce);
-            GameManager.Instance.OnFruitCut(); // Combo sistemine katký saðla
-
-        }
-
-        
-    }
->>>>>>> Stashed changes
+    }    
     public void StartSlicing()
     {
         Vector3 newPosition = BladeNewPosition();

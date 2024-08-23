@@ -2,21 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< Updated upstream
-public class ComboSystem 
-{   
-
-    private void Update()
-    {
-
-    }
-}
-=======
 public class ComboSystem
 {
     private int comboCount = 0;
     private float comboTimer;
     private float maxComboDuration = 2f; // Combo'nun aktif kalma süresi
+    public int minmNumOfFruitsToBeCut = 2;
     public bool IsComboActive { get; private set; }
 
     public ComboSystem()
@@ -57,4 +48,4 @@ public class ComboSystem
 
 
 
->>>>>>> Stashed changes
+

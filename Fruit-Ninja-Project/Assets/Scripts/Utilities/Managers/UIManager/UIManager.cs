@@ -21,22 +21,22 @@ public class UIManager : MonoSingleton<UIManager>
     {        
         switch (comboCount)
         {               
-            case 30:                
+            case 10:                
                 SetComboText(comboCount, Color.green);                
                 break;
-            case 40:                
-                SetComboText(comboCount, Color.blue);
+            case 20:                
+                SetComboText(comboCount, Color.gray);
                 break;
-            case 50:                
+            case 30:                
                 SetComboText(comboCount, Color.yellow);
                 break;
-            case 60:
+            case 40:
                 SetComboText(comboCount, Color.cyan);
                 break;
-            case 70:
+            case 50:
                 SetComboText(comboCount, Color.red);
                 break;
-            case 80:
+            case 60:
                 SetComboText(comboCount, Color.white);
                 break;       
                             

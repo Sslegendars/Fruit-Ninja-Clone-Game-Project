@@ -7,8 +7,8 @@ public class BombInitializer : InteractObjectInitializer
     protected override void InitializeComponents()
     {
         base.InitializeComponents();
-        bombMovement = (BombMovement)_movement;
+        bombMovement = (BombMovement)interactObjectMovement;
         bombController = (BombController)interactObjectController;
-        bombController.Initialize(_collider,bombMovement,bombExplosionParticle,interactObjectRigidbody);
+        bombController.Initialize(_collider,bombMovement,bombExplosionParticle);
     }
 }

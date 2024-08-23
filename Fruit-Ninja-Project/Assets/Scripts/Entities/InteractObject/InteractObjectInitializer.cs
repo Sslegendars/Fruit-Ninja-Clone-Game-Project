@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractObjectInitializer : MonoBehaviour
 {
-    public Movement _movement;
+    public InteractObjectMovement interactObjectMovement;
     public InteractObjectController interactObjectController;
     protected Collider _collider;
     protected Rigidbody interactObjectRigidbody;
@@ -17,6 +17,6 @@ public class InteractObjectInitializer : MonoBehaviour
     {
         _collider = GetComponent<Collider>();
         interactObjectRigidbody = GetComponent<Rigidbody>();
-        _movement.Initialize(interactObjectRigidbody);
+        interactObjectMovement.Initialize(interactObjectRigidbody);
     }
 }

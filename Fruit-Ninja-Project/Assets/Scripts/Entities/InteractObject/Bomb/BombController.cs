@@ -5,46 +5,71 @@ public class BombController : InteractObjectController
     private Collider bombCollider;
     private BombMovement bombMovement;
     private ParticleSystem bombExplosionParticle;
-    private Rigidbody bombRigidbody;
-    public void Initialize(Collider bombCollider, BombMovement bombMovement,ParticleSystem bombExplosionParticle, Rigidbody bombRigidbody)
+    
+    private bool isBombSliced = false;
+    
+    public void Initialize(Collider bombCollider, BombMovement bombMovement,ParticleSystem bombExplosionParticle)
     {
         this.bombCollider = bombCollider;
         this.bombMovement = bombMovement;
-        this.bombExplosionParticle = bombExplosionParticle;
-        this.bombRigidbody = bombRigidbody;
+        this.bombExplosionParticle = bombExplosionParticle;        
     }
     private void Start()
-    {   
-        bombExplosionParticle.Pause();
+    {
+        bombExplosionParticle.Stop();
         DestroyGameObjectDepentOnTime();
         EnabledBombCollider();
+        BombMovementWhenGameIsStart();
+        // Sound start
     }
     private void Update()
     {
-        DestroyGameObjectWhenGameIsOver();
-        BombMovementBehaviour();
+        CheckAndDestroyBomb();
+        CheckBombMovementWhenGameIsPlay();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Blade"))
         {
-            PlayerLives playerLives = other.GetComponentInParent<PlayerLives>();
-            playerLives.DecreaseLife();
-            DisabledBombCollider();
-            bombExplosionParticle.Play();
-            // Sound play
-            // UIManager Deflect
-            // GameManager .gameOver            
+            HandleBladeCollision();         
 
         }
     }
-    private void ApplyForceToBomb(Vector2 direction, Vector3 position, float force)
+    private void HandleBladeCollision()
     {
-        
+        isBombSliced = true;        
+        bombMovement.ObjectRigidbodyIsKinematic();
+        DisabledBombCollider();
+        bombExplosionParticle.Play();
+        // Sound explosion
+        // Sound start.Stop()
+        GameManager.Instance.GameOver();
     }
-    private void BombMovementBehaviour()
+    private void DestroyBombWhenGameIsOver()
+    {        
+        Destroy(gameObject, 1f);
+    }
+    private void CheckAndDestroyBomb()
     {
-        bombMovement.InteractObjectMovement();
+        if (isBombSliced)
+        {
+            DestroyBombWhenGameIsOver();
+        }
+    }
+    private void CheckBombMovementWhenGameIsPlay()
+    {
+        if (!isBombSliced)
+        {
+            BombMovementWhenGameIsPlay();
+        }
+    }
+    private void BombMovementWhenGameIsPlay()
+    {
+        bombMovement.InteractObjectRotate();
+    }
+    private void BombMovementWhenGameIsStart()
+    {
+        bombMovement.InteractObjectApplyForce();
     }
     private void DisabledBombCollider()
     {

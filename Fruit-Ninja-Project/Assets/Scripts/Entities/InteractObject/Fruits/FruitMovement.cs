@@ -1,10 +1,9 @@
-public class FruitMovement : Movement
+public class FruitMovement : InteractObjectMovement
 {      
     protected override void InitializeComponents()
     {
-        minForce = 11f;
-        maxForce = 15f;
-        interactObjectRotationDirection = new UnityEngine.Vector3(1, 0, 1);
+        interactObjectRotationDirection = new UnityEngine.Vector3(0, 0, 1);
         base.InitializeComponents();
     }
+   
 }

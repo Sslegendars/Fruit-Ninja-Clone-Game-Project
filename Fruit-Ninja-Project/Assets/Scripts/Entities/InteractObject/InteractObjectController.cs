@@ -7,11 +7,5 @@ public class InteractObjectController : MonoBehaviour
     {
         Destroy(gameObject, maxLifeTime);
     }
-    protected void DestroyGameObjectWhenGameIsOver()
-    {
-        if (GameManager.Instance.GameIsOver == true)
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 }
