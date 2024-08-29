@@ -5,94 +5,170 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public bool GameIsOver { get; private set; } = false;
-    public ComboSystem comboSystem;
-    public Blade _blade;
     
-    public int Score { get; private set; } = 0;
+    public bool GameIsOver { get; private set; } = false;
+    [HideInInspector]
+    public ComboSystem comboSystem;
+    [HideInInspector]
+    public ScoreManager scoreManager;
 
-    private void Start()
+    //public Blade _blade;
+
+    //public int Score { get; private set; } = 0;
+
+    private ISceneHandler sceneHandler;
+    //private MultiPlayerWinAndLoseData multiPlayerWinAndLoseData;
+
+
+    private void Awake()
     {
-        GameIsStart();        
+        DontDestroyOnLoad(this.gameObject);
+        //ActivatedSpawnManager();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
+    
     private void Update()
     {
-        CheckHandleCombo();        
-    }
-    private void CheckHandleCombo()
-    {
-        if (comboSystem.IsComboActive)
-        {
-            HandleCombo();
-        }
-    }
-    private void HandleCombo()
-    {
-        comboSystem.UpdateCombo(Time.deltaTime);
-
-        if (!comboSystem.IsComboActive)
-        {
-            int pointsToAdd = CalculateComboPoints();
-            UIManager.Instance.ShowComboText(pointsToAdd, _blade.transform.position);
-            UpdateScore(pointsToAdd);
-            comboSystem.ResetCombo();
-        }
-    }
-    private int CalculateComboPoints()
-    {
-        int pointsToAdd = 0;
-
-        if (comboSystem.GetComboCount() > comboSystem.minmNumOfFruitsToBeCut)
-        {
-            pointsToAdd = (comboSystem.GetComboCount() - comboSystem.minmNumOfFruitsToBeCut) * 10;
-        }
         
-        return pointsToAdd;
+        if (sceneHandler is ISceneHandlerUpdatable updatable)
+        {
+            updatable.Update();
+        }
     }
-   
-    public void FruitWasCut()
+
+    private void OnDestroy()
     {
-        UpdateScore(1);
-        comboSystem.AddToCombo();          
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    private void GameIsStart()
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        comboSystem = new ComboSystem();
-        UpdateScore(0);
-        ActiveSpawnManager();
-        UIManager.Instance.HideGameOver();
+        /* if (sceneHandler == null)
+         {
+             CreateSceneHandler(scene);
+         }
+         else if (scene.name == "MainMenuScene" || scene.name == "MultiPlayerMenuScene")
+         {
+             // Eðer ana menü sahnesine gidildiðinde yeni bir sahne yöneticisi gerekiyorsa, eski sahne yöneticisini temizleriz.
+             CreateSceneHandler(scene);
+         }*/
+        CreateSceneHandler(scene);
+
+        if (sceneHandler != null)
+        {
+            sceneHandler.Initialize();
+        }
     }
+    private void CreateSceneHandler(Scene scene)
+    {
+        switch (scene.name)
+        {
+            case "MainMenuScene":
+                sceneHandler = new MainMenuSceneHandler();
+                break;
+            case "MultiPlayerMenuScene":
+                sceneHandler = new MultiPlayerMenuSceneHandler();
+                Debug.LogError("MultiplayerMenuSceneCalýþtý");
+                break;
+            case "SinglePlayerGameScene":
+                sceneHandler = new SinglePlayerGameSceneHandler();
+                ActivatedSpawnManager();
+                CallScoreManager();
+                CallComboSystem();
+                break;
+            case "MultiPlayerDepentOnLivesGameScene":
+                Debug.LogError("MultiplayeLivesrMenuSceneCalýþtý");
+                if (sceneHandler is MultiPlayerLivesGameSceneHandler) return;
+                sceneHandler = new MultiPlayerLivesGameSceneHandler();
+                ActivatedSpawnManager();
+                //CallMultiPlayerGameSceneWinAndLoseData();
+                break;
+            case "MultiPlayerDepentOnTimeGameScene":
+                sceneHandler = new MultiPlayerTimeGameSceneHandler();
+                ActivatedSpawnManager();
+                CallScoreManager();
+                CallComboSystem();
+                //CallMultiPlayerGameSceneWinAndLoseData();
+                break;
+        }
+    }
+
     public void GameOver()
     {
         GameIsOver = true;
-        DeactiveSpawnManager();
-        StartCoroutine(ShowGameOverDelay());
-    }
-    private IEnumerator ShowGameOverDelay()
-    {        
-        yield return new WaitForSeconds(1.5f);        
+        DeactivetedSpawnManager();
         UIManager.Instance.ShowGameOver();
+        sceneHandler.GameOver();
+        
     }
-    public void UpdateScore(int scorePointsToAdd)
+    public void FruitWasCut()
     {
-        Score += scorePointsToAdd;
-        UIManager.Instance.UpdateScoreText(Score);
+        if(sceneHandler is MultiPlayerTimeGameSceneHandler || sceneHandler is SinglePlayerGameSceneHandler)
+        {
+            //UpdateScore(1);
+            scoreManager.UpdateScore(1);
+            comboSystem.AddToCombo();
+        }
     }
-    private void ActiveSpawnManager()
+    private void ActivatedSpawnManager()
     {
         SpawnManager.Instance.gameObject.SetActive(true);
     }
-    private void DeactiveSpawnManager()
+
+    private void DeactivetedSpawnManager()
     {
         SpawnManager.Instance.gameObject.SetActive(false);
     }
+
     public void RestartTheGame()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex);
-        UIManager.Instance.HideGameOver();
+        //int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        //SceneManager.LoadScene(currentSceneIndex);
+        GameIsOver = false;
+        ActivatedSpawnManager();
+        if (sceneHandler is ISceneHandlerRestartable restartable)
+        {
+            restartable.RestartTheGame();
+            
+        }
+        UIManager.Instance.HideSinglePlayerGameOver();
+        
     }
+    public void LoadPreviousScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if(currentSceneIndex > 0)
+        {
+            SceneManager.LoadScene(currentSceneIndex - 1);
+        }
+    }
+    private void CallComboSystem()
+    {
+        comboSystem = new ComboSystem();
+    }
+    private void CallScoreManager()
+    {
+        scoreManager = new ScoreManager();
+    }
+    /*private void CallMultiPlayerGameSceneWinAndLoseData()
+    {
+        multiPlayerWinAndLoseData = new MultiPlayerWinAndLoseData();
+    }*/
+
+    // Using Button Onclick Event
+    public void LoadScene(string sceneName)
+    {
+        GameIsOver = false;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene(sceneName);
+        
+    }
+    public void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

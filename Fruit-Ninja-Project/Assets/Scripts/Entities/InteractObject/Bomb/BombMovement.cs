@@ -1,10 +1,9 @@
 
 public class BombMovement : InteractObjectMovement
 {
-    protected override void InitializeComponents()
+    private void Start()
     {
         SetBombRotationDirection();
-        base.InitializeComponents();       
     }
     private UnityEngine.Vector3 SetBombRotationDirection()
     {

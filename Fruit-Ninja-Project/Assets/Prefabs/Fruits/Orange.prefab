@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 3020616618310017183}
   m_Layer: 0
   m_Name: Orange
-  m_TagString: Untagged
+  m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,6 +570,8 @@ MonoBehaviour:
   interactObjectMovement: {fileID: 3020616618310017183}
   interactObjectController: {fileID: 2620645199630303578}
   fruitJuice: {fileID: 3586331098534314091}
+  wholeFruit: {fileID: 5445512023830576327}
+  slicedFruit: {fileID: 614802734550887884}
 --- !u!114 &2620645199630303578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,8 +584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51111737c012f840b1464b4c5ec8174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whole: {fileID: 5445512023830576327}
-  sliced: {fileID: 614802734550887884}
 --- !u!114 &3020616618310017183
 MonoBehaviour:
   m_ObjectHideFlags: 0

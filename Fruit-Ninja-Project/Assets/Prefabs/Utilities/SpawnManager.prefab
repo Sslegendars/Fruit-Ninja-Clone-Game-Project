@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8551024125576171652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2172656579975917402}
+  - component: {fileID: 6403956742548115541}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2172656579975917402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551024125576171652}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.672446, y: -3.9365692, z: -5.6160254}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6403956742548115541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551024125576171652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ac8677b597f6046ba031e37d1858af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnAreas:
+  - {fileID: 0}
+  - {fileID: 0}
+  fruitPrefabs:
+  - {fileID: 2490080353777240482, guid: 12e9ad41bdecd164fb11a9bc8ad50a1f, type: 3}
+  - {fileID: 7597558070326851859, guid: dcfb37702a6b80d4fabbf7733e65a21d, type: 3}
+  - {fileID: 9158403172923623707, guid: d18d02a2ee79c9d4ea1ff34ebef8c2b6, type: 3}
+  - {fileID: 8793112282072585368, guid: 4ca65bcd6f62a234089410371a3ad813, type: 3}
+  - {fileID: 5878307410493216480, guid: b146b49fca2877c49994af0398e8f895, type: 3}
+  bombPrefab: {fileID: 4291279714850261187, guid: 5e182d0a5ec057e40911638d5af666f5, type: 3}
+  minSpawnDelay: 0.25
+  maxSpawnDelay: 1
+  minAngle: -10
+  maxAngle: 10
+  bombChance: 0.05
+  forceValue: 0
+  prefabRotationSpeed: 0

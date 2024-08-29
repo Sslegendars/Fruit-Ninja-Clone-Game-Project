@@ -1,9 +1,12 @@
 public class FruitMovement : InteractObjectMovement
-{      
-    protected override void InitializeComponents()
+{
+    private void Start()
+    {
+        FruitRotationDirection();
+    }
+    private void FruitRotationDirection()
     {
         interactObjectRotationDirection = new UnityEngine.Vector3(0, 0, 1);
-        base.InitializeComponents();
     }
    
 }

@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class InteractObjectMovement : MonoBehaviour
 {
-    protected float minForce = 6f;
-    protected float maxForce = 7.5f;
-
-    protected float rotationSpeed = 0;
+    //public int rotateSpeed;
     protected Vector3 interactObjectRotationDirection;
 
     [HideInInspector]
@@ -16,53 +13,23 @@ public class InteractObjectMovement : MonoBehaviour
     {
         this.interactObjectRigidbody = interactObjectRigidbody;
     }
-    private void Start()
-    {
-        InitializeComponents();
-    }
+    
     public void InteractObjectRotate()
     {
-        gameObject.transform.Rotate(interactObjectRotationDirection * rotationSpeed * Time.deltaTime);
-    }   
-    private float RandomRotationSpeed()
-    {
-        int randomIndex = Random.Range(0, 4);        
-        
-        switch (randomIndex)
-        {
-            case 0:
-                rotationSpeed = 25;
-                break;
-            case 1:
-                rotationSpeed = -50;
-                break;
-            case 2:
-                rotationSpeed = 50;
-                break;
-            default:
-                rotationSpeed = 0;
-                break;
-        }
-        return rotationSpeed;
+        gameObject.transform.Rotate(interactObjectRotationDirection * InteractObjectRotationSpeed() * Time.deltaTime);
     }
-    private float RandomForceValue()
-    {
-        float randomForceValue = Random.Range(minForce, maxForce);
-        return randomForceValue;
 
+    private float InteractObjectForceValue()
+    {
+        return SpawnManager.Instance.forceValue;
     }
-    protected virtual void InitializeComponents()
+    private float InteractObjectRotationSpeed()
     {
-        InteractObjectApplyForce();
-        RandomRotationSpeed();
-
+        return SpawnManager.Instance.prefabRotationSpeed;
     }
     public void InteractObjectApplyForce()
     {
-        interactObjectRigidbody.AddForce(gameObject.transform.up * RandomForceValue(), ForceMode.Impulse);
+        interactObjectRigidbody.AddForce(gameObject.transform.up * InteractObjectForceValue(), ForceMode.Impulse);
     }
-    
-    
-
 
 }

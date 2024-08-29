@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class PlayerInitializer : MonoBehaviour
 {   
-    [Header("Player Controller Injection")]
+    [Header("Player Injection")]
     public PlayerController playerController;
     public PlayerLives playerLives;
-    public Blade _blade;    
+    public Blade _blade;
+    public int playerID;
     [Header("Blade Injection")]
     public Camera mainCamera;
     public Collider bladeCollider;
@@ -20,8 +21,11 @@ public class PlayerInitializer : MonoBehaviour
         _blade.MainCamera = mainCamera;
         _blade.BladeCollider = bladeCollider;
         _blade.BladeTrail = bladeTrail;
+        _blade.PlayerID = playerID;
         playerController.Blade = _blade;
         playerController.PlayerLives = playerLives;
+        playerController.PlayerID = playerID;
+        playerLives.PlayerID = playerID;
         
     }
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoSingleton<SpawnManager>
-{
-    private Collider spawnArea;
+{   
+    [SerializeField]
+    private Collider[] spawnAreas;
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
 
@@ -13,20 +14,50 @@ public class SpawnManager : MonoSingleton<SpawnManager>
 
     public float minAngle = -10f;
     public float maxAngle = 10f;
-    
-    private const float bombChance = 0.05f;   
-    private void Awake()
+
+    public float bombChance = 0.05f;
+
+    public float forceValue;
+    public float prefabRotationSpeed;
+   
+
+    private float PrefabRandomRotationSpeed()
     {
-        spawnArea = GetComponent<Collider>();
+        int randomIndex = Random.Range(0, 4);
+        float prefabRotationSpeed = 0;
+        switch (randomIndex)
+        {
+            case 0:
+                prefabRotationSpeed = 25;
+                break;
+            case 1:
+                prefabRotationSpeed = -50;
+                break;
+            case 2:
+                prefabRotationSpeed = 50;
+                break;
+            default:
+                prefabRotationSpeed = 0;
+                break;
+        }
+        return prefabRotationSpeed;
     }
+    private float PrefabRandomForceValue()
+    {
+        float minForce = 11f;
+        float maxForce = 15f;
+        float randomForceValue = Random.Range(minForce, maxForce);
+        return randomForceValue;
+    }
+    
     private void OnEnable()
     {
         StartCoroutine(Spawn());
     }
-    private void OnDisable()
+    /*private void OnDisable()
     {
         StopAllCoroutines();
-    }    
+    } */   
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);
@@ -39,8 +70,19 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     }
     private void SpawnPrefab()
     {
-        Instantiate(RandomPrefab(), RandomSpawnPosition(), RandomSpawnRotation());
-    }    
+        GameObject selectedPrefab = RandomPrefab();
+        //Vector3 selectedSpawnPosition = RandomSpawnPosition(spawnAreas[0]).;       
+        Quaternion selectedSpawnRotation = RandomSpawnRotation();
+        prefabRotationSpeed = PrefabRandomRotationSpeed();
+        forceValue = PrefabRandomForceValue();
+        foreach (var spawnArea in spawnAreas)
+        {
+            //Vector3 spawnPosition = spawnArea.ClosestPoint(selectedSpawnPosition);
+            Instantiate(selectedPrefab, RandomSpawnPosition(spawnArea), selectedSpawnRotation);
+        }
+        
+        
+    }  
     private GameObject RandomPrefab()
     {
         GameObject randomPrefab = fruitPrefabs[Random.Range(0, fruitPrefabs.Length)];
@@ -50,7 +92,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         }
         return randomPrefab;
     }    
-    private Vector3 RandomSpawnPosition()
+    private Vector3 RandomSpawnPosition(Collider spawnArea)
     {
         Vector3 randomSpawnPosition = new Vector3
         {
@@ -65,12 +107,6 @@ public class SpawnManager : MonoSingleton<SpawnManager>
         Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));       
         return randomRotation;
     }
-    /*public float RandomAngle()
-    {
-        float randomRotation = Random.Range(minAngle, maxAngle);        
->>>>>>> Stashed changes
-        return randomRotation;
-    }*/
     private float RandomSpawnDelay()
     {
         float randomSpawnDelay = Random.Range(minSpawnDelay, maxSpawnDelay);

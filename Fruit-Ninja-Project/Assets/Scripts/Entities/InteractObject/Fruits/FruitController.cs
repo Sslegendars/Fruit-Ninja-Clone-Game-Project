@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class FruitController : InteractObjectController
 {   
-    public GameObject whole;
-    public GameObject sliced;
+    private GameObject wholeFruit;
+    private GameObject slicedFruit;
     private FruitMovement fruitMovement;
     private Collider fruitCollider;
-    private GameObject fruitJuice;    
-    
-    private bool isFruitSliced = false;
-
-    
-    public void Initialize(Collider fruitCollider, FruitMovement fruitMovement, GameObject fruitJuice)
+    private GameObject fruitJuice;        
+    private bool isFruitSliced = false;    
+    public void Initialize(Collider fruitCollider, FruitMovement fruitMovement, GameObject fruitJuice, GameObject wholeFruit, GameObject slicedFruit)
     {
         this.fruitCollider = fruitCollider;
         this.fruitMovement = fruitMovement;
         this.fruitJuice = fruitJuice;
+        this.wholeFruit = wholeFruit;
+        this.slicedFruit = slicedFruit;
     }
     private void Start()
     {
@@ -25,22 +24,16 @@ public class FruitController : InteractObjectController
     private void Update()
     {
         FruitMovementWhenGameIsPlay();
-        DestroyFruitWhenGameIsOver();
-        
+        DestroyFruitWhenGameIsOver();        
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bottom Bound"))
-        {
-            HandleBottomBoundCollision();
-        }
         if (other.CompareTag("Blade"))
         {
             HandleBladeCollision(other);
         }
         
-    }
-    
+    }    
     protected virtual void InitializeComponents()
     {        
         MakeFruitDynamicRigidbody();
@@ -56,14 +49,8 @@ public class FruitController : InteractObjectController
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
         GameManager.Instance.FruitWasCut();
         isFruitSliced = true;
-    }      
-    
-
-    private void HandleBottomBoundCollision()
-    {
-        PlayerLives playerLives = FindObjectOfType<PlayerLives>();
-        playerLives.DecreaseLife();
     }    
+    
     public void Slice(Vector3 direction, Vector3 position, float force)
     {        
         isFruitSliced = true;
@@ -78,13 +65,13 @@ public class FruitController : InteractObjectController
     private Quaternion RotateObjectAccordingCuttingAngle(Vector3 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x)  * Mathf.Rad2Deg;
-        Vector3 currentRotation = sliced.transform.rotation.eulerAngles;
-        sliced.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, angle);      
-        return sliced.transform.rotation;        
+        Vector3 currentRotation = slicedFruit.transform.rotation.eulerAngles;
+        slicedFruit.transform.rotation = Quaternion.Euler(currentRotation.x, currentRotation.y, angle);      
+        return slicedFruit.transform.rotation;        
     }
     private void ApplyForceToSlices(Vector3 direction, Vector3 position, float force)
     {
-        Rigidbody[] slices = sliced.GetComponentsInChildren<Rigidbody>();
+        Rigidbody[] slices = slicedFruit.GetComponentsInChildren<Rigidbody>();
         foreach (Rigidbody slice in slices)
         {
             slice.velocity = fruitMovement.interactObjectRigidbody.velocity;
@@ -111,19 +98,19 @@ public class FruitController : InteractObjectController
     }
     private void DeactiveWholeFruit()
     {
-        whole.SetActive(false);
+        wholeFruit.SetActive(false);
     }
     private void ActiveWholeFruit()
     {
-        whole.SetActive(true);
+        wholeFruit.SetActive(true);
     }
     private void ActiveSlicedFruit()
     {
-        sliced.SetActive(true);
+        slicedFruit.SetActive(true);
     }
     private void DeactiveSlicedFruit()
     {
-        sliced.SetActive(false);
+        slicedFruit.SetActive(false);
     }
     private void ActiveFruitJuice()
     {

@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 8252918216856238746}
   m_Layer: 0
   m_Name: Coconut
-  m_TagString: Untagged
+  m_TagString: Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,6 +570,8 @@ MonoBehaviour:
   interactObjectMovement: {fileID: 8252918216856238746}
   interactObjectController: {fileID: 5987596920337361708}
   fruitJuice: {fileID: 3379547963830710157}
+  wholeFruit: {fileID: 4106643305722813862}
+  slicedFruit: {fileID: 3368205455134513774}
 --- !u!114 &5987596920337361708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,8 +584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51111737c012f840b1464b4c5ec8174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whole: {fileID: 4106643305722813862}
-  sliced: {fileID: 3368205455134513774}
 --- !u!114 &8252918216856238746
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerLives : MonoBehaviour
 {   
+    [HideInInspector]
+    public int playerID;
     
     public int Lives { get; private set; }
-
+    public int PlayerID
+    {
+        get => playerID;
+        set => playerID = value;
+    }
     private void Start()
     {
         UpdateLivesWhenGameStarted();
@@ -25,12 +31,20 @@ public class PlayerLives : MonoBehaviour
     private void LoseLife()
     {         
         Lives--;
-        UIManager.Instance.UpdateLivesText(Lives);       
+        UIManager.Instance.UpdateLivesText(playerID,Lives);       
     }
 
     private void UpdateLivesWhenGameStarted()
     {
-        Lives = 100;
-        UIManager.Instance.UpdateLivesText(Lives);
+        Lives = 3;
+        UIManager.Instance.UpdateLivesText(playerID,Lives);
+    }
+    public int Zerolives()
+    {
+        return Lives = 0;
+    }
+    public void ResetLives()
+    {
+        UpdateLivesWhenGameStarted();
     }
 }

@@ -20,17 +20,19 @@ public class BombController : InteractObjectController
         DestroyGameObjectDepentOnTime();
         EnabledBombCollider();
         BombMovementWhenGameIsStart();
-        // Sound start
     }
     private void Update()
     {
         CheckAndDestroyBomb();
         CheckBombMovementWhenGameIsPlay();
+        DestroyBombWhenGameIsOver();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Blade"))
         {
+            PlayerLives playerlives = other.GetComponentInParent<PlayerLives>();
+            playerlives.Zerolives();
             HandleBladeCollision();         
 
         }
@@ -41,19 +43,25 @@ public class BombController : InteractObjectController
         bombMovement.ObjectRigidbodyIsKinematic();
         DisabledBombCollider();
         bombExplosionParticle.Play();
-        // Sound explosion
-        // Sound start.Stop()
         GameManager.Instance.GameOver();
     }
-    private void DestroyBombWhenGameIsOver()
+    private void DestroyBombWhenBombIsSliced()
     {        
         Destroy(gameObject, 1f);
     }
+    private void DestroyBombWhenGameIsOver()
+    {
+        if (GameManager.Instance.GameIsOver)
+        {
+            Destroy(gameObject);
+        }        
+    }
+    
     private void CheckAndDestroyBomb()
     {
         if (isBombSliced)
         {
-            DestroyBombWhenGameIsOver();
+            DestroyBombWhenBombIsSliced();
         }
     }
     private void CheckBombMovementWhenGameIsPlay()
