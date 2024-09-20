@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
 {
-    private static volatile T _instance;
+    protected static volatile T _instance;
 
     public static T Instance
     {
@@ -13,6 +13,21 @@ public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
                 _instance = FindAnyObjectByType(typeof(T)) as T;
             }
             return _instance;
+        }
+    }
+    protected virtual void Awake()
+    {
+        EnsureSingletonInstance();
+    }
+    private void EnsureSingletonInstance()
+    {
+        if (_instance == null)
+        {
+            _instance = this as T;
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
         }
     }
 }

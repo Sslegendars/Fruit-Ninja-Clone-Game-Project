@@ -30,19 +30,7 @@ public class MultiPlayerWinAndLoseData
         Player1Stats.Losses++;
     }
 
-    // Oyuncu 1'in kaybettiðini belirtir
-    public void Player1Loses()
-    {
-        Player1Stats.Losses++;
-        Player2Stats.Wins++;
-    }
-
-    // Oyuncu 2'nin kaybettiðini belirtir
-    public void Player2Loses()
-    {
-        Player2Stats.Losses++;
-        Player1Stats.Wins++;
-    }
+     
 
     // Ýki oyuncunun da istatistiklerini sýfýrlar
     public void ResetData()

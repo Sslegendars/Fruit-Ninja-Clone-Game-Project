@@ -11,16 +11,12 @@ public class MultiPlayerLivesGameSceneHandler : ISceneHandler,ISceneHandlerResta
 
     public MultiPlayerLivesGameSceneHandler()
     {
-        // Ýstatistiklerin tek bir örneði olacak þekilde sadece ilk seferde oluþturuyoruz.
-        multiPlayerWinAndLoseData = new MultiPlayerWinAndLoseData();
-        firstPlayerLives = GameObject.Find("Player1").GetComponent<PlayerLives>();
-        secondPlayerLives = GameObject.Find("Player2").GetComponent<PlayerLives>();
-
-    }
-
+       multiPlayerWinAndLoseData = new MultiPlayerWinAndLoseData();     
+    }   
     public void Initialize()    
-    {        
-        UIManager.Instance.Player1AndPlayer2PanelsDeactivated();
+    {
+        firstPlayerLives = GameObject.Find("Player1").GetComponent<PlayerLives>();
+        secondPlayerLives = GameObject.Find("Player2").GetComponent<PlayerLives>();        
     }
    
     public void GameOver()
@@ -28,11 +24,11 @@ public class MultiPlayerLivesGameSceneHandler : ISceneHandler,ISceneHandlerResta
         
         if (secondPlayerLives.Lives == 0 )
         {
-            HandleGameOver(multiPlayerWinAndLoseData.Player1Wins, UIManager.Instance.FirstPlayerWin);
+            HandleGameOver(multiPlayerWinAndLoseData.Player1Wins, UIManager.Instance.multiPlayerHandler.FirstPlayerWin);
         }
         else if (firstPlayerLives.Lives == 0)
         {
-            HandleGameOver(multiPlayerWinAndLoseData.Player2Wins, UIManager.Instance.SecondPlayerWin);
+            HandleGameOver(multiPlayerWinAndLoseData.Player2Wins, UIManager.Instance.multiPlayerHandler.SecondPlayerWin);
         }
         
     }
@@ -41,18 +37,19 @@ public class MultiPlayerLivesGameSceneHandler : ISceneHandler,ISceneHandlerResta
     {
         recordWin.Invoke();
         showWinUI.Invoke();
-        UIManager.Instance.UpdatePlayersWinAndLoseCountText(
+        UIManager.Instance.multiPlayerHandler.UpdatePlayersWinAndLoseCountText
+        (
             multiPlayerWinAndLoseData.Player1Stats.Wins,
             multiPlayerWinAndLoseData.Player1Stats.Losses,
             multiPlayerWinAndLoseData.Player2Stats.Wins,
             multiPlayerWinAndLoseData.Player2Stats.Losses
         );
+
     }
 
     public void RestartTheGame()
-    {   
-       
-        Initialize();
+    {          
+        UIManager.Instance.multiPlayerHandler.RestartTheUIElements();
         firstPlayerLives.ResetLives();
         secondPlayerLives.ResetLives();
     }

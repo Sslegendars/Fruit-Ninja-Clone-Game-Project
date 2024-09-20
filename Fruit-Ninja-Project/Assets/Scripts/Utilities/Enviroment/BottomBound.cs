@@ -9,11 +9,11 @@ public class BottomBound : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        HandleFruitCollision(other);
+       HandleFruitCollision(other);        
     }
     private void HandleFruitCollision(Collider fruitCollider)
     {
-        if (fruitCollider.CompareTag("Fruit"))
+        if (GameManager.Instance.GameIsOver == false && fruitCollider.CompareTag("Fruit"))
         {
             PlayerLoseLife();
         }         

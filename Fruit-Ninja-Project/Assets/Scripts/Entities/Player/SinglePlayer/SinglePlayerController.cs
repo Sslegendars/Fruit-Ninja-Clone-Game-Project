@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SinglePlayerController : PlayerController
+public class SinglePlayerController : PlayerControllerDepentOnLives
 {
     private void Update()
     {

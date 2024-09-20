@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.41960785, g: 0.47843137, b: 0.627451, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 120203018}
   - component: {fileID: 120203017}
   m_Layer: 5
-  m_Name: Player2LosePanel
+  m_Name: SecondPlayerLosePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -622,7 +622,7 @@ Transform:
   m_GameObject: {fileID: 359363933}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710605, y: -0.0010428858, z: 0.001042886, w: 0.70710605}
-  m_LocalPosition: {x: 11.43, y: -0.14, z: 0}
+  m_LocalPosition: {x: 11.43, y: -0.14, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1.1322}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 397157130}
   m_Layer: 5
   m_Name: 'RestartButton '
-  m_TagString: Untagged
+  m_TagString: MultiPlayerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -808,7 +808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.66775}
   m_AnchorMax: {x: 0.5, y: 0.66775}
-  m_AnchoredPosition: {x: -2.8000002, y: -139.5}
+  m_AnchoredPosition: {x: -2.8000002, y: -173.1}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397157130
@@ -856,12 +856,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartTheGame
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1052,8 +1052,8 @@ GameObject:
   - component: {fileID: 447648203}
   - component: {fileID: 447648202}
   m_Layer: 5
-  m_Name: MultiPlayerMenuButton
-  m_TagString: Untagged
+  m_Name: PreviousSceneButton
+  m_TagString: MultiPlayerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1074,7 +1074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.2825}
   m_AnchorMax: {x: 0.5, y: 0.2825}
-  m_AnchoredPosition: {x: -0, y: 140.1}
+  m_AnchoredPosition: {x: -0, y: 180}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &447648202
@@ -1120,19 +1120,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 447648203}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RestartTheGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &447648203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,7 +1141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8be7816805b133f4abd2eb613de3e2d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7673092bd620de343b298e563159e9ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1183,7 +1171,7 @@ GameObject:
   - component: {fileID: 458145984}
   - component: {fileID: 458145983}
   m_Layer: 5
-  m_Name: 'Player2LossesCountText '
+  m_Name: 'SecondPlayerLossesCountText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1542,6 +1530,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &500382461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500382462}
+  - component: {fileID: 500382463}
+  m_Layer: 0
+  m_Name: MultiPlayerDepentOnlivesGameSceneInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &500382462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500382461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1320, y: 1012.19995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500382463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500382461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2348d00b1590c4981700dff44cf1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1543177548}
+  restartGameButton: {fileID: 397157130}
+  loadPreviousScenebutton: {fileID: 447648202}
+  mainMenubutton: {fileID: 1094558918}
+  playersYouWinPanel:
+  - {fileID: 1280457238}
+  - {fileID: 663824580}
+  playersYouLosePanel:
+  - {fileID: 743468763}
+  - {fileID: 120203015}
+  playersWinCountText:
+  - {fileID: 549704861}
+  - {fileID: 1327510528}
+  playersLoseCountText:
+  - {fileID: 538290289}
+  - {fileID: 458145983}
+  firstPlayerLivesText: {fileID: 874976019}
+  secondPlayerLivesText: {fileID: 829933366}
 --- !u!1 &517474967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1619,7 @@ RectTransform:
   m_GameObject: {fileID: 517474967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10488448, y: 3.6557274, z: 1}
+  m_LocalScale: {x: 0.10488448, y: 19.406063, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 474149719}
@@ -1629,7 +1679,7 @@ GameObject:
   - component: {fileID: 538290290}
   - component: {fileID: 538290289}
   m_Layer: 5
-  m_Name: 'Player1LossesCountText '
+  m_Name: 'FirstPlayerLossesCountText '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1763,7 +1813,7 @@ GameObject:
   - component: {fileID: 549704860}
   - component: {fileID: 549704861}
   m_Layer: 5
-  m_Name: Player1WinsCountText
+  m_Name: FirstPlayerWinsCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2080,12 +2130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 649112261}
-  playerLives: {fileID: 649112259}
   _blade: {fileID: 1902330530}
   playerID: 1
   mainCamera: {fileID: 1760112025}
   bladeCollider: {fileID: 1902330531}
   bladeTrail: {fileID: 359773793}
+  playerLives: {fileID: 649112259}
 --- !u!114 &649112261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,7 +2160,7 @@ GameObject:
   - component: {fileID: 663824582}
   - component: {fileID: 663824581}
   m_Layer: 5
-  m_Name: Player2WinPanel
+  m_Name: SecondPlayerWinPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2335,7 +2385,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.4039216, g: 0.18431373, b: 0.08235294, a: 0.90588236}
+  m_Color: {r: 0.96862745, g: 0.7529412, b: 0.5764706, a: 0.90588236}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2520,7 +2570,7 @@ GameObject:
   - component: {fileID: 743468766}
   - component: {fileID: 743468765}
   m_Layer: 5
-  m_Name: Player1LosePanel
+  m_Name: FirstPlayerLosePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2596,7 +2646,7 @@ GameObject:
   - component: {fileID: 829933367}
   - component: {fileID: 829933366}
   m_Layer: 5
-  m_Name: LivesText
+  m_Name: SecondPlayerLivesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2641,7 +2691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LIVES:'
+  m_text: 'LIVES: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3cb24df214bc44f93bb3eea657fe5d, type: 2}
   m_sharedMaterial: {fileID: 1667018852963237139, guid: 0e3cb24df214bc44f93bb3eea657fe5d, type: 2}
@@ -2730,7 +2780,7 @@ GameObject:
   - component: {fileID: 874976020}
   - component: {fileID: 874976019}
   m_Layer: 5
-  m_Name: LivesText
+  m_Name: FirstPlayerLivesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2756,7 +2806,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'LIVES:'
+  m_text: 'LIVES: 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e3cb24df214bc44f93bb3eea657fe5d, type: 2}
   m_sharedMaterial: {fileID: 1667018852963237139, guid: 0e3cb24df214bc44f93bb3eea657fe5d, type: 2}
@@ -2888,7 +2938,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.4156863, g: 0.16862746, b: 0.078431375, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3210,6 +3260,126 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1094558917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1094558921}
+  - component: {fileID: 1094558920}
+  - component: {fileID: 1094558919}
+  - component: {fileID: 1094558918}
+  m_Layer: 5
+  m_Name: MainMenuButton
+  m_TagString: MultiPlayerButton
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1094558918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094558917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1094558919}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1094558919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094558917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8be7816805b133f4abd2eb613de3e2d0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1094558920
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094558917}
+  m_CullTransparentMesh: 1
+--- !u!224 &1094558921
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094558917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1543177549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 80, y: 80}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1232960357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3258,12 +3428,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1232960362}
-  playerLives: {fileID: 1232960361}
   _blade: {fileID: 346262410}
   playerID: 0
   mainCamera: {fileID: 963194227}
   bladeCollider: {fileID: 346262411}
   bladeTrail: {fileID: 973021584}
+  playerLives: {fileID: 1232960361}
 --- !u!114 &1232960361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3500,7 +3670,7 @@ GameObject:
   - component: {fileID: 1280457240}
   - component: {fileID: 1280457239}
   m_Layer: 5
-  m_Name: Player1WinPanel
+  m_Name: FirstPlayerWinPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3576,7 +3746,7 @@ GameObject:
   - component: {fileID: 1327510527}
   - component: {fileID: 1327510528}
   m_Layer: 5
-  m_Name: Player2WinsCountText
+  m_Name: SecondPlayerWinsCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3880,7 +4050,7 @@ GameObject:
   - component: {fileID: 1543177551}
   - component: {fileID: 1543177550}
   m_Layer: 5
-  m_Name: GameOverPanel1
+  m_Name: GameOverPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3900,6 +4070,7 @@ RectTransform:
   m_Children:
   - {fileID: 397157129}
   - {fileID: 447648201}
+  - {fileID: 1094558921}
   m_Father: {fileID: 474149719}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4215,7 +4386,7 @@ Transform:
   m_GameObject: {fileID: 1681307078}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710605, y: -0.0010428858, z: 0.001042886, w: 0.70710605}
-  m_LocalPosition: {x: -5.5, y: 0, z: 0}
+  m_LocalPosition: {x: -5.5, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1.1322}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4248,7 +4419,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.41568628, g: 0.16862746, b: 0.078431375, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -4890,115 +5061,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}
---- !u!1001 &7214513279869776316
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 437.96002
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1098
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616726791698872579, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242642109212923252, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: m_Name
-      value: UIManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: menuButton
-      value: 
-      objectReference: {fileID: 447648202}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: gameOverPanel
-      value: 
-      objectReference: {fileID: 1543177548}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: restartButton
-      value: 
-      objectReference: {fileID: 397157130}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: livesTextPlayer1
-      value: 
-      objectReference: {fileID: 874976019}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: livesTextPlayer2
-      value: 
-      objectReference: {fileID: 829933366}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: youWinPanel.Array.data[0]
-      value: 
-      objectReference: {fileID: 1280457238}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: youWinPanel.Array.data[1]
-      value: 
-      objectReference: {fileID: 663824580}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: youLosePanel.Array.data[0]
-      value: 
-      objectReference: {fileID: 743468763}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: youLosePanel.Array.data[1]
-      value: 
-      objectReference: {fileID: 120203015}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: playerWinCountText.Array.data[0]
-      value: 
-      objectReference: {fileID: 549704861}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: playerWinCountText.Array.data[1]
-      value: 
-      objectReference: {fileID: 1327510528}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: playerLoseCountText.Array.data[0]
-      value: 
-      objectReference: {fileID: 538290289}
-    - target: {fileID: 7157462943077738548, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
-      propertyPath: playerLoseCountText.Array.data[1]
-      value: 
-      objectReference: {fileID: 458145983}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7c0233eb9f37c2247b41acee44afc923, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5015,8 +5077,8 @@ SceneRoots:
   - {fileID: 2069147759}
   - {fileID: 725756585}
   - {fileID: 1082886405}
-  - {fileID: 7214513279869776316}
   - {fileID: 1271796647}
   - {fileID: 47795602}
   - {fileID: 474149719}
   - {fileID: 6397653052567722601}
+  - {fileID: 500382462}

@@ -54,10 +54,10 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         StartCoroutine(Spawn());
     }
-    /*private void OnDisable()
+    private void OnDisable()
     {
         StopAllCoroutines();
-    } */   
+    }   
     private IEnumerator Spawn()
     {
         yield return new WaitForSeconds(2f);

@@ -2,35 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiPlayerController : PlayerController
-{   
-    private void Update()
-    {
-        InputBehaviourContidion();
-    }
-    private void InputBehaviourContidion()
-    {
-        if(playerLives.Lives > 0)
-        {
-            CheckHandleInput();
-        }
-    }
-    private void CheckHandleInput()
+public class MultiPlayerTouchHandler 
+{
+    public void CheckHandleInput(System.Action<Touch> HandleInput, int playerID)
     {
         // Dokunma olaylarýný baðýmsýz olarak yönet
         for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.GetTouch(i);
-            
-            
+
             // Dokunma olayýný uygun oyuncuya yönlendir
-            if (IsTouchForThisPlayer(touch))
+            if (IsTouchForThisPlayer(touch, playerID))
             {
                 HandleInput(touch);
             }
         }
     }
-    private bool IsTouchForThisPlayer(Touch touch)
+
+    private bool IsTouchForThisPlayer(Touch touch, int playerID)
     {
         Vector2 touchPosition = touch.position;
 
@@ -47,6 +36,5 @@ public class MultiPlayerController : PlayerController
             return true;
         }
         return false;
-       
     }
 }

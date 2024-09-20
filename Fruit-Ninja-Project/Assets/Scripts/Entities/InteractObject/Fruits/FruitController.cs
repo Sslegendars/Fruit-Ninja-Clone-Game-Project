@@ -33,21 +33,21 @@ public class FruitController : InteractObjectController
             HandleBladeCollision(other);
         }
         
-    }    
+    }
     protected virtual void InitializeComponents()
-    {        
+    {
         MakeFruitDynamicRigidbody();
         FruitMovementWhenGameIsStart();
         ActiveWholeFruit();
         DeactiveSlicedFruit();
         DeactiveFruitJuice();
-        EnableFruitCollider();        
-    }   
+        EnableFruitCollider();
+    }
     private void HandleBladeCollision(Collider bladeCollider)
     {       
         Blade blade = bladeCollider.GetComponent<Blade>();       
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
-        GameManager.Instance.FruitWasCut();
+        GameManager.Instance.FruitWasCut(blade.PlayerID);
         isFruitSliced = true;
     }    
     

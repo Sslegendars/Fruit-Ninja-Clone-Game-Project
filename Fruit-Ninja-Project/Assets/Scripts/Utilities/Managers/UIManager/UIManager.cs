@@ -1,247 +1,152 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 public class UIManager : MonoSingleton<UIManager>
-{   
-    //
-    public GameObject gameOverPanel;
+{
 
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI bestScoreText;
-    //
-    public TextMeshProUGUI livesTextPlayer1;
+    public UIBestScoreHandler bestScoreHandler;
+    public UIComboHandler comboHandler;
+    public UILivesHandler livesHandler;
+    public UIScoreHandler scoreHandler;
+    public UIHandlerMultiPlayer multiPlayerHandler;
+    public UIButtonHandler buttonHandler;
+    public UIGameOverHandler gameOverHandler;
+    public UITimerHandler timerHandler;
+    public UIMainMenuButtonHandler mainMenuButtonHandler;
+    public UIMultiPlayerMenuButtonHandler multiPlayerMenuButtonHandler;
 
-    public TextMeshProUGUI livesTextPlayer2;
-    public TextMeshProUGUI comboText;
-    // Array first element [0] = firstPlayer [1] = secondPlayer
-    public GameObject[] youWinPanel;
-    public GameObject[] youLosePanel;
-    public TextMeshProUGUI[] playerWinCountText;
-    public TextMeshProUGUI[] playerLoseCountText;
 
-    //
-    public Button restartButton;
-    public Button loadPreviousSceneButton;
-    public Button quitGameButton;
-    public Button mainMenuButton;
-
-    private void Start()
+    protected override void Awake()
     {
-        SetQuitGameButton();
-        SetMainMenuButton();
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+        SceneLoaded();     
+    } 
+    public void SceneLoaded()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    public void UpdateScoreText(int score)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        scoreText.text = score.ToString(); 
+        CreateInterfaceHandler(scene);
+        
     }
-    public void ShowComboText(int comboCount, Vector3 bladePosition)
-    {
-        switch (comboCount)
-        {
-            case 10:
-                SetComboText(comboCount, Color.green);
+    private void CreateInterfaceHandler(Scene scene)
+    {    
+        switch (scene.name)
+        {               
+            case "MainMenuScene":
+                GameSceneElementsAreNull();
+                MultiPlayerMenuSceneElementIsNull();
+                CallUIMenuButtonHandler();
                 break;
-            case 20:
-                SetComboText(comboCount, Color.gray);
+            case "MultiPlayerMenuScene":
+                GameSceneElementsAreNull();
+                MainMenuSceneElementIsNull();
+                CallMultiPlayerMenubuttonHandler();
                 break;
-            case 30:
-                SetComboText(comboCount, Color.yellow);
+            case "SinglePlayerGameScene":
+                MainMenuSceneElementIsNull();
+                CallGameOverUIHandler();
+                CallBestScoreUIHandler();
+                CallComboUIHandler();
+                CallLivesUIHandler();
+                CallScoreUIHandler();
+                CallUIButtonHandler();                              
                 break;
-            case 40:
-                SetComboText(comboCount, Color.cyan);
+            case "MultiPlayerDepentOnLivesGameScene":
+                MultiPlayerMenuSceneElementIsNull();
+                CallGameOverUIHandler();
+                CallLivesUIHandler();
+                CallUIHandlerMultiPlayer();
+                CallUIButtonHandler();              
                 break;
-            case 50:
-                SetComboText(comboCount, Color.red);
+            case "MultiPlayerDepentOnTimeGameScene":
+                MultiPlayerMenuSceneElementIsNull();
+                CallGameOverUIHandler();
+                CallTimerUIHandler();
+                CallComboUIHandler();
+                CallScoreUIHandler();                
+                CallUIButtonHandler();
+                CallUIHandlerMultiPlayer();
                 break;
-            case 60:
-                SetComboText(comboCount, Color.white);
+            default:
                 break;
-
         }
-        ComboTextPosition(bladePosition);
-        ActivatedComboText();
-        Invoke("DeactivatedComboText", 1f);
+    }     
+    private void CallUIHandlerMultiPlayer()
+    {
+        multiPlayerHandler = new UIHandlerMultiPlayer();        
     }
-    public void Player1AndPlayer2PanelsDeactivated()
+    private void CallScoreUIHandler()
     {
-        Player1YouWinPanelDeactivated();
-        Player1YouLosePanelDeactivated();
-        Player2YouWinPanelDeactivated();
-        Player2YouLosePanelDeactivated();
-        FirstPlayerWinCountTextDeactivated();
-        FirstPlayerLoseCountTextDeactivated();
-        SecondPlayerWinCountTextDeactivated();
-        SecondPlayerLoseCountTextDeactivated();
+        scoreHandler = new UIScoreHandler();
     }
-    public void FirstPlayerWin()
+    private void CallComboUIHandler()
     {
-        Player1YouWinPanelActivated();
-        Player2YouLosePanelActivated();       
+        comboHandler = new UIComboHandler();
     }
-    public void UpdatePlayersWinAndLoseCountText(int firstPlayerWinCount,int firstPlayerLoseCountText, int secondPlayerWinCount, int secondPlayerLoseCount)
+    private void CallBestScoreUIHandler()
     {
-        UpdateFirstPlayerWinCountText(firstPlayerWinCount);
-        UpdateFirstPlayerLoseCountText(firstPlayerLoseCountText);
-        UpdateSecondPlayerWinCountText(secondPlayerWinCount);
-        UpdateSecondPlayerLoseCountText(secondPlayerLoseCount);
+        bestScoreHandler = new UIBestScoreHandler();
     }
-    public void SecondPlayerWin()
+    private void CallLivesUIHandler()
     {
-        Player2YouWinPanelActivated();
-        Player1YouLosePanelActivated();
+        livesHandler = new UILivesHandler();
     }
-    // Player1 panel settings.
-    private void Player1YouWinPanelActivated()
+    private void CallUIButtonHandler()
     {
-        youWinPanel[0].SetActive(true);
+        buttonHandler = new UIButtonHandler();
     }
-    private void Player1YouWinPanelDeactivated()
+    private void CallGameOverUIHandler()
     {
-        youWinPanel[0].SetActive(false);
+        gameOverHandler = new UIGameOverHandler();
     }
-    private void Player1YouLosePanelActivated()
+    private void CallTimerUIHandler()
     {
-        youLosePanel[0].SetActive(true);
+        timerHandler = new UITimerHandler();
     }
-    private void Player1YouLosePanelDeactivated()
+    private void CallUIMenuButtonHandler()
     {
-        youLosePanel[0].SetActive(false);
+        mainMenuButtonHandler = new UIMainMenuButtonHandler();
     }
-    // player2 Panel settings.
-    public void Player2YouWinPanelActivated()
+    private void CallMultiPlayerMenubuttonHandler()
     {
-        youWinPanel[1].SetActive(true);
+        multiPlayerMenuButtonHandler = new UIMultiPlayerMenuButtonHandler();
     }
-    public void Player2YouWinPanelDeactivated()
-    {
-        youWinPanel[1].SetActive(false);
+    private void GameSceneElementsAreNull()
+    {   
+        ResetUIElements
+        (
+            () => bestScoreHandler = null,
+            () => comboHandler = null,
+            () => livesHandler = null,
+            () => scoreHandler = null,
+            () => multiPlayerHandler = null,
+            () => buttonHandler = null,
+            () => gameOverHandler = null,
+            () => timerHandler = null
+        );
     }
-    public void Player2YouLosePanelActivated()
-    {
-        youLosePanel[1].SetActive(true);
+    private void MainMenuSceneElementIsNull()
+    {   
+        ResetUIElements
+        (
+           () => mainMenuButtonHandler = null
+        );
+        
     }
-    public void Player2YouLosePanelDeactivated()
+    private void MultiPlayerMenuSceneElementIsNull()
     {
-        youLosePanel[1].SetActive(false);
+        ResetUIElements
+            (
+                () => multiPlayerMenuButtonHandler = null
+            );
     }
-    // FirstPlayerWinCountText
-    private void UpdateFirstPlayerWinCountText(int firstPlayerWinCount)
+    private void ResetUIElements(params System.Action[] resetActions)
     {
-        FirstPlayerWinCountTextActivated();
-        playerWinCountText[0].text = "WINS\n" + firstPlayerWinCount.ToString();
-    }
-    private void FirstPlayerWinCountTextActivated()
-    {
-        playerWinCountText[0].gameObject.SetActive(true);
-    }
-    private void FirstPlayerWinCountTextDeactivated()
-    {
-        playerWinCountText[0].gameObject.SetActive(false);
-    }
-    // FirstPlayerLoseCountText
-    private void UpdateFirstPlayerLoseCountText(int firstPlayerLoseCount)
-    {
-        FirstPlayerLoseCountTextActivated();
-        playerLoseCountText[0].text = "LOSSES\n" + firstPlayerLoseCount.ToString();
-    }   
-    private void FirstPlayerLoseCountTextActivated()
-    {
-        playerLoseCountText[0].gameObject.SetActive(true);
-    }
-    private void FirstPlayerLoseCountTextDeactivated()
-    {
-        playerLoseCountText[0].gameObject.SetActive(false);
-    }
-    // SecondPlayerWinCountText
-    private void UpdateSecondPlayerWinCountText(int secondPlayerWinCount)
-    {
-        SecondPlayerWinCountTextActivated();
-        playerWinCountText[1].text = "WINS\n" + secondPlayerWinCount.ToString();
-    }
-    private void SecondPlayerWinCountTextActivated()
-    {
-        playerWinCountText[1].gameObject.SetActive(true);
-    }
-    private void SecondPlayerWinCountTextDeactivated()
-    {
-        playerWinCountText[1].gameObject.SetActive(false);
-    }
-    // SecondPlayerLoseCountText
-    private void UpdateSecondPlayerLoseCountText(int secondPlayerLoseCount)
-    {
-        SecondPlayerLoseCountTextActivated();
-        playerLoseCountText[1].text = "LOSSES\n" + secondPlayerLoseCount.ToString();
-    }
-    private void SecondPlayerLoseCountTextActivated()
-    {
-        playerLoseCountText[1].gameObject.SetActive(true);
-    }
-    private void SecondPlayerLoseCountTextDeactivated()
-    {
-        playerLoseCountText[1].gameObject.SetActive(false);
-    }
-    private void ComboTextPosition(Vector3 bladePosition)
-    {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(bladePosition);
-        comboText.transform.position = screenPosition;
-    }
-    private void SetComboText(int comboCount, Color color)
-    {
-        comboText.color = color;
-        comboText.text = comboCount + " \nPOINTS!";
-    }
-    private void ActivatedComboText()
-    {
-        comboText.gameObject.SetActive(true);
-    }
-    public void DeactivatedComboText()
-    {
-        comboText.gameObject.SetActive(false);
-    }
-    public void UpdateLivesText(int playerID, int lives)
-    {
-        if (playerID == 0 && livesTextPlayer1 != null)
+        foreach (var resetAction in resetActions)
         {
-            livesTextPlayer1.text = "Lives: " + lives;
+            resetAction.Invoke(); // Her bir sýfýrlama iþlemini gerçekleþtir
         }
-        else if (playerID == 1 && livesTextPlayer2 != null)
-        {
-            livesTextPlayer2.text = "Lives: " + lives;
-        }
+    }
 
-    }
-    public void ShowGameOver()
-    {
-        gameOverPanel.SetActive(true);
-        SetRestartButton();
-        SetLoadPreviousSceneButton();
-    }
-    private void SetLoadPreviousSceneButton()
-    {
-       loadPreviousSceneButton.onClick.AddListener(GameManager.Instance.LoadPreviousScene);
-    }
-    private void SetRestartButton()
-    {
-        restartButton.onClick.AddListener(GameManager.Instance.RestartTheGame);
-    }
-    private void SetQuitGameButton()
-    {
-        quitGameButton.onClick.AddListener(GameManager.Instance.QuitGame);
-    }
-    private void SetMainMenuButton()
-    {
-        mainMenuButton.onClick.AddListener(GameManager.Instance.LoadMainMenuScene);
-    }
-    public void HideSinglePlayerGameOver()
-    {
-        gameOverPanel.SetActive(false);
-    }
-    public void ShowBestScore(int bestScore)
-    {
-        bestScoreText.text = "Best Score\n" + bestScore.ToString();
-    }   
 }

@@ -18,26 +18,29 @@ public class PlayerLives : MonoBehaviour
         UpdateLivesWhenGameStarted();
     }
     public void DecreaseLife()
-    {   
+    {
         if(Lives > 0)
         {
             LoseLife();
-        }        
+        }
         else
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver();           
         }
+
+        
+        
     }
     private void LoseLife()
     {         
         Lives--;
-        UIManager.Instance.UpdateLivesText(playerID,Lives);       
+        UIManager.Instance.livesHandler.UpdateLivesText(playerID,Lives);       
     }
 
     private void UpdateLivesWhenGameStarted()
     {
         Lives = 3;
-        UIManager.Instance.UpdateLivesText(playerID,Lives);
+        UIManager.Instance.livesHandler.UpdateLivesText(playerID,Lives);
     }
     public int Zerolives()
     {

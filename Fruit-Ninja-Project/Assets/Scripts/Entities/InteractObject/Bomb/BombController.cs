@@ -46,12 +46,12 @@ public class BombController : InteractObjectController
         GameManager.Instance.GameOver();
     }
     private void DestroyBombWhenBombIsSliced()
-    {        
-        Destroy(gameObject, 1f);
+    {
+        Destroy(gameObject, 0.85f);
     }
     private void DestroyBombWhenGameIsOver()
     {
-        if (GameManager.Instance.GameIsOver)
+        if (GameManager.Instance.GameIsOver && !isBombSliced)
         {
             Destroy(gameObject);
         }        

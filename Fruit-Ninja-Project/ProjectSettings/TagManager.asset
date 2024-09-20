@@ -8,6 +8,8 @@ TagManager:
   - Blade
   - Bottom Bound
   - Bomb
+  - MultiPlayerButton
+  - SinglePlayerButton
   layers:
   - Default
   - TransparentFX
