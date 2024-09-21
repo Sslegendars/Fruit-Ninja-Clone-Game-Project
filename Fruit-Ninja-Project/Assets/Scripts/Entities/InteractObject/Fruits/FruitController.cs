@@ -38,9 +38,9 @@ public class FruitController : InteractObjectController
     {
         MakeFruitDynamicRigidbody();
         FruitMovementWhenGameIsStart();
-        ActiveWholeFruit();
-        DeactiveSlicedFruit();
-        DeactiveFruitJuice();
+        ActivateWholeFruit();
+        DeactivateSlicedFruit();
+        DeactivateFruitJuice();
         EnableFruitCollider();
     }
     private void HandleBladeCollision(Collider bladeCollider)
@@ -48,15 +48,16 @@ public class FruitController : InteractObjectController
         Blade blade = bladeCollider.GetComponent<Blade>();       
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
         GameManager.Instance.FruitWasCut(blade.PlayerID);
+        PlayFruitCutSound();
         isFruitSliced = true;
     }    
     
     public void Slice(Vector3 direction, Vector3 position, float force)
     {        
         isFruitSliced = true;
-        DeactiveWholeFruit();
-        ActiveSlicedFruit();
-        ActiveFruitJuice();
+        DeactivateWholeFruit();
+        ActivateSlicedFruit();
+        ActivateFruitJuice();
         MakeFruitKinematicRigidbody();
         DisableFruitCollider();
         RotateObjectAccordingCuttingAngle(direction);
@@ -93,30 +94,31 @@ public class FruitController : InteractObjectController
     {
         if (GameManager.Instance.GameIsOver == true)
         {
+            StopFruitCutSound();
             Destroy(gameObject);
         }
     }
-    private void DeactiveWholeFruit()
+    private void DeactivateWholeFruit()
     {
         wholeFruit.SetActive(false);
     }
-    private void ActiveWholeFruit()
+    private void ActivateWholeFruit()
     {
         wholeFruit.SetActive(true);
     }
-    private void ActiveSlicedFruit()
+    private void ActivateSlicedFruit()
     {
         slicedFruit.SetActive(true);
     }
-    private void DeactiveSlicedFruit()
+    private void DeactivateSlicedFruit()
     {
         slicedFruit.SetActive(false);
     }
-    private void ActiveFruitJuice()
+    private void ActivateFruitJuice()
     {
         fruitJuice.SetActive(true);
     }
-    private void DeactiveFruitJuice()
+    private void DeactivateFruitJuice()
     {
         fruitJuice.SetActive(false);
     }
@@ -136,5 +138,13 @@ public class FruitController : InteractObjectController
     {
         fruitMovement.interactObjectRigidbody.isKinematic = false;
     }    
+    private void PlayFruitCutSound()
+    {
+        AudioManager.Instance.Play(SoundName.FruitCutSound);
+    }
+    private void StopFruitCutSound()
+    {
+        AudioManager.Instance.Stop(SoundName.FruitCutSound);
+    }
 
 }

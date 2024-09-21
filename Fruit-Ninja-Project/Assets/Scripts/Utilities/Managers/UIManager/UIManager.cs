@@ -1,19 +1,16 @@
 using UnityEngine.SceneManagement;
 public class UIManager : MonoSingleton<UIManager>
 {
-
     public UIBestScoreHandler bestScoreHandler;
     public UIComboHandler comboHandler;
     public UILivesHandler livesHandler;
     public UIScoreHandler scoreHandler;
     public UIHandlerMultiPlayer multiPlayerHandler;
-    public UIButtonHandler buttonHandler;
+    public UIGameSceneButtonHandler gameSceneButtonHandler;
     public UIGameOverHandler gameOverHandler;
     public UITimerHandler timerHandler;
     public UIMainMenuButtonHandler mainMenuButtonHandler;
     public UIMultiPlayerMenuButtonHandler multiPlayerMenuButtonHandler;
-
-
     protected override void Awake()
     {
         base.Awake();
@@ -94,7 +91,7 @@ public class UIManager : MonoSingleton<UIManager>
     }
     private void CallUIButtonHandler()
     {
-        buttonHandler = new UIButtonHandler();
+        gameSceneButtonHandler = new UIGameSceneButtonHandler();
     }
     private void CallGameOverUIHandler()
     {
@@ -121,7 +118,7 @@ public class UIManager : MonoSingleton<UIManager>
             () => livesHandler = null,
             () => scoreHandler = null,
             () => multiPlayerHandler = null,
-            () => buttonHandler = null,
+            () => gameSceneButtonHandler = null,
             () => gameOverHandler = null,
             () => timerHandler = null
         );

@@ -17,7 +17,7 @@ public class GameSceneUIInitializer : MonoBehaviour
     protected virtual void InitializeUIComponents()
     {
         UIManager.Instance.gameOverHandler.Intialize(gameOverPanel);
-        UIManager.Instance.buttonHandler.Initialize(restartGameButton, loadPreviousScenebutton, mainMenubutton);
+        UIManager.Instance.gameSceneButtonHandler.Initialize(restartGameButton, loadPreviousScenebutton, mainMenubutton);
         
     }
 }

@@ -16,10 +16,7 @@ public class BombController : InteractObjectController
     }
     private void Start()
     {
-        bombExplosionParticle.Stop();
-        DestroyGameObjectDepentOnTime();
-        EnabledBombCollider();
-        BombMovementWhenGameIsStart();
+        InitializeBomb();
     }
     private void Update()
     {
@@ -37,12 +34,22 @@ public class BombController : InteractObjectController
 
         }
     }
+    private void InitializeBomb()
+    {
+        bombExplosionParticle.Stop();
+        PlayBombFuseSound();
+        DestroyGameObjectDepentOnTime();
+        EnabledBombCollider();
+        BombMovementWhenGameIsStart();
+    }
     private void HandleBladeCollision()
     {
         isBombSliced = true;        
         bombMovement.ObjectRigidbodyIsKinematic();
         DisabledBombCollider();
         bombExplosionParticle.Play();
+        StopBombFuseSound();
+        PlayBombExplosionSound();
         GameManager.Instance.GameOver();
     }
     private void DestroyBombWhenBombIsSliced()
@@ -53,6 +60,7 @@ public class BombController : InteractObjectController
     {
         if (GameManager.Instance.GameIsOver && !isBombSliced)
         {
+            StopBombFuseSound();
             Destroy(gameObject);
         }        
     }
@@ -86,6 +94,18 @@ public class BombController : InteractObjectController
     private void EnabledBombCollider()
     {
         bombCollider.enabled = true;
+    }
+    private void PlayBombFuseSound()
+    {
+        AudioManager.Instance.Play(SoundName.BombFuseSound);
+    }
+    private void StopBombFuseSound()
+    {
+        AudioManager.Instance.Stop(SoundName.BombFuseSound);
+    }
+    private void PlayBombExplosionSound()
+    {
+        AudioManager.Instance.Play(SoundName.BombExplosionSound);
     }
    
 

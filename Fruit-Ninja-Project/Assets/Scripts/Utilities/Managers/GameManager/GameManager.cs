@@ -13,6 +13,7 @@ public class GameManager : MonoSingleton<GameManager>
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
         //ActivatedSpawnManager();
+        
         SceneManagerGetSceneLoaded();
     }
     private void Update()
@@ -40,20 +41,25 @@ public class GameManager : MonoSingleton<GameManager>
         {
             case "MainMenuScene":
                 sceneHandler = new MainMenuSceneHandler();
+                SoundToBePlayedWhenMenuSceneStarts();
                 break;
             case "MultiPlayerMenuScene":
                 sceneHandler = new MultiPlayerMenuSceneHandler();
+                SoundToBePlayedWhenMenuSceneStarts();
                 break;
             case "SinglePlayerGameScene":
                 sceneHandler = new SinglePlayerGameSceneHandler();
+                SoundToBePlayedWhenTheGameSceneStarts();
                 ActivatedSpawnManager();
                 break;
             case "MultiPlayerDepentOnLivesGameScene":
                 sceneHandler = new MultiPlayerLivesGameSceneHandler();
+                SoundToBePlayedWhenTheGameSceneStarts();
                 ActivatedSpawnManager();
                 break;
             case "MultiPlayerDepentOnTimeGameScene":
                 sceneHandler = new MultiPlayerTimeGameSceneHandler();
+                SoundToBePlayedWhenTheGameSceneStarts();
                 ActivatedSpawnManager();                
                 break;
             default:
@@ -80,14 +86,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         GameIsOver = false;
     }
-
     public void GameOver()
     {
-
         GameIsOver = true;
         DeactivetedSpawnManager();
-        StartCoroutine(GameOverDelay());      
-
+        StartCoroutine(GameOverDelay());
     }
     public bool ChangeGameIsOverValue(bool gameIsOverValue)
     {        
@@ -110,12 +113,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         SpawnManager.Instance.gameObject.SetActive(true);
     }
-
     private void DeactivetedSpawnManager()
     {
         SpawnManager.Instance.gameObject.SetActive(false);
     }
-
     public void RestartTheGame()
     {
         ResetGameIsOver();
@@ -128,8 +129,9 @@ public class GameManager : MonoSingleton<GameManager>
         UIManager.Instance.gameOverHandler.HideGameOverPanel();        
     }          
     private void LoadScene(string sceneName)
-    {              
-        SceneManager.LoadScene(sceneName);        
+    {
+        SceneManager.LoadScene(sceneName); 
+        
     }
     public void LoadMainMenuScene()
     {
@@ -150,6 +152,18 @@ public class GameManager : MonoSingleton<GameManager>
     public void LoadSinglePlayerGameScene()
     {
         LoadScene("SinglePlayerGameScene");
+    }   
+    public void PlayButtonSound()
+    {
+        AudioManager.Instance.Play(SoundName.ButtonSound);
+    }
+    private void SoundToBePlayedWhenMenuSceneStarts()
+    {
+        AudioManager.Instance.MenuScenePlaySound();
+    }
+    private void SoundToBePlayedWhenTheGameSceneStarts()
+    {
+        AudioManager.Instance.GameScenePlaySound();
     }
     public void QuitGame()
     {

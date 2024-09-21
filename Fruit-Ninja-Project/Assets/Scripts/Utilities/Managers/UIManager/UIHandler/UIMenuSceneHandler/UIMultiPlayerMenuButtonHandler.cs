@@ -1,11 +1,10 @@
 using UnityEngine.UI;
 
-public class UIMultiPlayerMenuButtonHandler
+public class UIMultiPlayerMenuButtonHandler : UIButtonHandler
 {
     public Button depentOnTimeButton;
     public Button depentOnLivesButton;
     public Button mainMenubutton;
-
     public void Initialize(Button depentOnTimeButton, Button depentOnLivesButton, Button mainMenubutton)
     {
         this.depentOnTimeButton = depentOnTimeButton;
@@ -15,15 +14,15 @@ public class UIMultiPlayerMenuButtonHandler
     }
     private void SetDepentOnLivesButton()
     {
-        ButtonHelper.SetButton(depentOnLivesButton, GameManager.Instance.LoadMultiPlayerDepentOnLivesGameScene);
+       SetButton(depentOnLivesButton, GameManager.Instance.LoadMultiPlayerDepentOnLivesGameScene);
     }
     private void SetDepentOnTimeButton()
     {
-        ButtonHelper.SetButton(depentOnTimeButton, GameManager.Instance.LoadMultiPlayerDepentOnTimeGameScene);
+        SetButton(depentOnTimeButton, GameManager.Instance.LoadMultiPlayerDepentOnTimeGameScene);
     }
     private void SetMainMenuButton()
     {
-        ButtonHelper.SetButton(mainMenubutton, GameManager.Instance.LoadMainMenuScene);
+        SetButton(mainMenubutton, GameManager.Instance.LoadMainMenuScene);
     }
     private void InitializeMultiPlayerMenuBottons()
     {
