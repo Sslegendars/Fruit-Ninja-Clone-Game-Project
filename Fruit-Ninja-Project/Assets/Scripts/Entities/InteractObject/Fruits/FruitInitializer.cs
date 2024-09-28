@@ -1,13 +1,14 @@
-
 using UnityEngine;
-
 public class FruitInitializer : InteractObjectInitializer
 {
     protected FruitMovement fruitMovement;
     protected FruitController fruitController;
-    public GameObject fruitJuice;
-    public GameObject wholeFruit;
-    public GameObject slicedFruit;
+    [SerializeField]
+    private GameObject fruitJuice;
+    [SerializeField]
+    private GameObject wholeFruit;
+    [SerializeField]
+    private GameObject slicedFruit;
     
     protected override void InitializeComponents()
     {

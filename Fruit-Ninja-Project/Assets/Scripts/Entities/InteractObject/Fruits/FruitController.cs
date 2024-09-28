@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class FruitController : InteractObjectController
 {   
     private GameObject wholeFruit;
@@ -47,7 +46,7 @@ public class FruitController : InteractObjectController
     {       
         Blade blade = bladeCollider.GetComponent<Blade>();       
         Slice(blade.direction, blade.transform.position, blade.sliceForce);
-        GameManager.Instance.FruitWasCut(blade.PlayerID);
+        GameManager.Instance.OnFruitCut(blade.PlayerID);
         PlayFruitCutSound();
         isFruitSliced = true;
     }    

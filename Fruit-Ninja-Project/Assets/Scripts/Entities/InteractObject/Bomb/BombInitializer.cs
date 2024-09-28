@@ -1,7 +1,8 @@
 using UnityEngine;
 public class BombInitializer : InteractObjectInitializer
-{
-    public ParticleSystem bombExplosionParticle; 
+{   
+    [SerializeField]
+    private ParticleSystem bombExplosionParticle; 
     protected BombController bombController;
     protected BombMovement bombMovement;
     protected override void InitializeComponents()

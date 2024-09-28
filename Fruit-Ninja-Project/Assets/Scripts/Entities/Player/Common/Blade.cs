@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Blade : MonoBehaviour
@@ -8,14 +6,18 @@ public class Blade : MonoBehaviour
     private Camera mainCamera;
     private Collider bladeCollider;
     private TrailRenderer bladeTrail;
-
+    
+    [HideInInspector]
     public float sliceForce = 5f;
-    public float minSliceVelocity = 0.01f;
+    private float minSliceVelocity = 0.01f;
+
+    private float angleThreshold = 90f;
+    private Vector3 previousDirection;
 
     public bool Slicing { get; private set; }
     public Vector3 direction { get; private set; }
 
-    private Vector3 lastTouchPosition; // Son dokunma pozisyonunu takip etmek için
+    private Vector3 lastTouchPosition; 
 
     public Camera MainCamera
     {
@@ -80,7 +82,7 @@ public class Blade : MonoBehaviour
         float velocity = direction.magnitude / Time.deltaTime;
         bladeCollider.enabled = velocity > minSliceVelocity;
         transform.position = newPosition;
-
+        CheckAngleChangeAndPlayMusic();
         lastTouchPosition = touchPosition;
     }
 
@@ -90,4 +92,39 @@ public class Blade : MonoBehaviour
         newPosition.z = -2f;
         return newPosition;
     }
+    private void CheckAngleChangeAndPlayMusic()
+    {
+        if (IsInSinglePlayerScene())
+        {
+            if (HasDirectionChangedSignificantly())
+            {
+                PlayBladeSwipeSound();
+            }
+
+            previousDirection = direction; 
+        }
+    }
+
+    private bool IsInSinglePlayerScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SinglePlayerGameScene";
+    }
+
+    private bool HasDirectionChangedSignificantly()
+    {
+        if (previousDirection != Vector3.zero)
+        {
+            float angleDifference = Vector3.Angle(previousDirection, direction);
+            return angleDifference > angleThreshold; 
+        }
+
+        return false; 
+    }
+
+    private void PlayBladeSwipeSound()
+    {
+        AudioManager.Instance.PlayRandomBladeSwipeSound();
+        
+    }
+    
 }
