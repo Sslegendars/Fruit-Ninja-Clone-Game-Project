@@ -482,9 +482,9 @@ GameObject:
   - component: {fileID: 2275725997373257347}
   - component: {fileID: 2620645199630303578}
   - component: {fileID: 3020616618310017183}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Orange
-  m_TagString: Fruit
+  m_TagString: OrangeFruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,6 +572,8 @@ MonoBehaviour:
   fruitJuice: {fileID: 3586331098534314091}
   wholeFruit: {fileID: 5445512023830576327}
   slicedFruit: {fileID: 614802734550887884}
+  slicedFruitDown: {fileID: 4288744922592563151}
+  slicedFruitUp: {fileID: 2708144968027188403}
 --- !u!114 &2620645199630303578
 MonoBehaviour:
   m_ObjectHideFlags: 0

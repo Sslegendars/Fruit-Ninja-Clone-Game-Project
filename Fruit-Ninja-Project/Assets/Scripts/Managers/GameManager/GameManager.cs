@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 
 public class GameManager : MonoSingleton<GameManager>
@@ -40,6 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void CreateSceneHandler(Scene scene)
     {
+        DeactivateFruitsAndBombGameObject();
         switch (scene.name)
         {
             case "MainMenuScene":
@@ -80,7 +81,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         GameIsOver = false;
     }
-
     public void GameOver()
     {
         GameIsOver = true;
@@ -102,7 +102,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void RestartTheGame()
     {
-        DestroyFruitAndBombGameObjectWhenGameIsRestart();
+        DeactivateFruitsAndBombGameObject();
         ResetGameIsOver();
         ResetIsGamePaused();
         ChangeTimeScale(1);
@@ -149,26 +149,28 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }    
     // Fruit and Bomb Management
-    private void DestroyFruitAndBombGameObjectWhenGameIsRestart()
+    private void DeactivateFruitsAndBombGameObject()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Fruit");
-        GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
-
-        if (enemies != null)
+        GameObject objectPool = GameObject.Find("ObjectPool");
+        if (objectPool != null)
         {
-            foreach (GameObject enemy in enemies)
-            {
-                Destroy(enemy);
+            string[] tags = { "AppleFruit", "CoconutFruit", "OrangeFruit", "PearFruit", "WatermelonFruit", "Bomb" };
+
+            foreach (string tag in tags)
+            {   
+                
+                GameObject[] objectsToDeactivate = objectPool.GetComponentsInChildren<Transform>()
+                                                 .Where(t => t.CompareTag(tag) && t.gameObject.activeSelf)
+                                                 .Select(t => t.gameObject)
+                                                 .ToArray();
+
+                foreach (GameObject obj in objectsToDeactivate)
+                {
+                    obj.SetActive(false);
+                }
             }
         }
 
-        if (bombs != null)
-        {
-            foreach (GameObject bomb in bombs)
-            {
-                Destroy(bomb);
-            }
-        }
     }
     public void OnFruitCut(int playerID)
     {

@@ -154,8 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliceForce: 5
-  minSliceVelocity: 0.01
-  angleThreshold: 90
 --- !u!135 &346262411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1084,22 +1082,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ac8677b597f6046ba031e37d1858af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabForceValue: 10
+  prefabRotationSpeed: 0
   spawnAreas:
   - {fileID: 1007105703}
-  fruitPrefabs:
-  - {fileID: 2490080353777240482, guid: 12e9ad41bdecd164fb11a9bc8ad50a1f, type: 3}
-  - {fileID: 7597558070326851859, guid: dcfb37702a6b80d4fabbf7733e65a21d, type: 3}
-  - {fileID: 9158403172923623707, guid: d18d02a2ee79c9d4ea1ff34ebef8c2b6, type: 3}
-  - {fileID: 8793112282072585368, guid: 4ca65bcd6f62a234089410371a3ad813, type: 3}
-  - {fileID: 5878307410493216480, guid: b146b49fca2877c49994af0398e8f895, type: 3}
-  bombPrefab: {fileID: 4291279714850261187, guid: 5e182d0a5ec057e40911638d5af666f5, type: 3}
+  objectPool: {fileID: 0}
   minSpawnDelay: 0.25
   maxSpawnDelay: 1
-  minAngle: -10
-  maxAngle: 10
+  minAngle: -15
+  maxAngle: 15
   bombChance: 0.05
-  forceValue: 0
-  prefabRotationSpeed: 0
+  prefabSpawnRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &874976018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1654,7 +1647,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -6, z: -2}
-  m_LocalScale: {x: 0.9855419, y: 1, z: 0.71742797}
+  m_LocalScale: {x: 1.111486, y: 1, z: 0.71742797}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2167,8 +2160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1232960362}
-  _blade: {fileID: 346262410}
   playerID: 0
+  _blade: {fileID: 346262410}
   mainCamera: {fileID: 963194227}
   bladeCollider: {fileID: 346262411}
   bladeTrail: {fileID: 973021584}

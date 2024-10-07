@@ -10,6 +10,11 @@ TagManager:
   - Bomb
   - MultiPlayerButton
   - SinglePlayerButton
+  - AppleFruit
+  - CoconutFruit
+  - OrangeFruit
+  - PearFruit
+  - WatermelonFruit
   layers:
   - Default
   - TransparentFX
@@ -17,12 +22,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Watermelon
+  - Coconut
+  - Apple
+  - Orange
+  - Pear
+  - Bomb
   - 
   - 
   - 

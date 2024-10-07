@@ -366,9 +366,9 @@ GameObject:
   - component: {fileID: 6552982102015998280}
   - component: {fileID: 5379914687379831901}
   - component: {fileID: 3131876299867355513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple
-  m_TagString: Fruit
+  m_TagString: AppleFruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,6 +456,8 @@ MonoBehaviour:
   fruitJuice: {fileID: 2040149646628485671}
   wholeFruit: {fileID: 8706467284760604210}
   slicedFruit: {fileID: 6773678209887786771}
+  slicedFruitDown: {fileID: 604618976003573009}
+  slicedFruitUp: {fileID: 1668550036579958987}
 --- !u!114 &5379914687379831901
 MonoBehaviour:
   m_ObjectHideFlags: 0

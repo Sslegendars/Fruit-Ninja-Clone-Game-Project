@@ -9,13 +9,16 @@ public class FruitInitializer : InteractObjectInitializer
     private GameObject wholeFruit;
     [SerializeField]
     private GameObject slicedFruit;
+    [SerializeField]
+    private GameObject slicedFruitDown;
+    [SerializeField]
+    private GameObject slicedFruitUp;
     
     protected override void InitializeComponents()
     {
         base.InitializeComponents();
         fruitMovement = (FruitMovement)interactObjectMovement;
         fruitController = (FruitController)interactObjectController;
-        fruitMovement.Initialize(interactObjectRigidbody);
-        fruitController.Initialize(_collider, fruitMovement,fruitJuice, wholeFruit, slicedFruit);
+        fruitController.Initialize(_collider, fruitMovement,fruitJuice, wholeFruit, slicedFruit, slicedFruitDown, slicedFruitUp);
     }
 }

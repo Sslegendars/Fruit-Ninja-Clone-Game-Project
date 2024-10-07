@@ -10,11 +10,22 @@ public class BottomBound : MonoBehaviour
        HandleFruitCollision(other);        
     }
     private void HandleFruitCollision(Collider fruitCollider)
-    {
-        if (GameManager.Instance.GameIsOver == false && fruitCollider.CompareTag("Fruit"))
+    {   
+        if(GameManager.Instance.GameIsOver == false)
         {
-            PlayerLoseLife();
-        }         
+            if (
+            fruitCollider.CompareTag("Fruit") ||
+            fruitCollider.CompareTag("AppleFruit") ||
+            fruitCollider.CompareTag("CoconutFruit") ||
+            fruitCollider.CompareTag("OrangeFruit") ||
+            fruitCollider.CompareTag("PearFruit") ||
+            fruitCollider.CompareTag("WatermelonFruit")
+            )
+            {
+                PlayerLoseLife();
+            }
+        }
+                 
              
     }
     private void PlayerLoseLife()

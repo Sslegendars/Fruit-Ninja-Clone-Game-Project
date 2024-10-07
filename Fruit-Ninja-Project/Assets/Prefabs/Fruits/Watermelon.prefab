@@ -232,9 +232,9 @@ GameObject:
   - component: {fileID: 9101117922682454719}
   - component: {fileID: 4208073790420554972}
   - component: {fileID: 4119837759308484413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Watermelon
-  m_TagString: Fruit
+  m_TagString: WatermelonFruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,6 +322,8 @@ MonoBehaviour:
   fruitJuice: {fileID: 3580366811827723654}
   wholeFruit: {fileID: 7732833214203224467}
   slicedFruit: {fileID: 8229201235183113727}
+  slicedFruitDown: {fileID: 880091321429149535}
+  slicedFruitUp: {fileID: 8662070289965075868}
 --- !u!114 &4208073790420554972
 MonoBehaviour:
   m_ObjectHideFlags: 0

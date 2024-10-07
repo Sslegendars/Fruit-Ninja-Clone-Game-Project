@@ -9,12 +9,7 @@ public class BombMovement : InteractObjectMovement
     {
         interactObjectRotationDirection = new UnityEngine.Vector3(0, 0, 1);
         return interactObjectRotationDirection;
-    }
-    public void ObjectRigidbodyIsKinematic()
-    {
-        interactObjectRigidbody.isKinematic = true;
-    }
-
+    }   
 
 
 }

@@ -98,9 +98,9 @@ GameObject:
   - component: {fileID: 6112829637379655862}
   - component: {fileID: 4783097451605275220}
   - component: {fileID: 3187288656325939244}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

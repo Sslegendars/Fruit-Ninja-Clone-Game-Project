@@ -7,7 +7,7 @@ public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = FindAnyObjectByType(typeof(T)) as T;
             }
@@ -16,6 +16,7 @@ public class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
     }
     protected virtual void Awake()
     {
+        
         EnsureSingletonInstance();
     }
     private void EnsureSingletonInstance()

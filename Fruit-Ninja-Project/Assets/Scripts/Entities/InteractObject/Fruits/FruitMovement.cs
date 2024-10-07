@@ -4,9 +4,10 @@ public class FruitMovement : InteractObjectMovement
     {
         FruitRotationDirection();
     }
-    private void FruitRotationDirection()
+    private UnityEngine.Vector3 FruitRotationDirection()
     {
         interactObjectRotationDirection = new UnityEngine.Vector3(0, 0, 1);
+        return interactObjectRotationDirection;
     }
-   
+
 }

@@ -466,8 +466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliceForce: 5
-  minSliceVelocity: 0.01
-  angleThreshold: 90
 --- !u!135 &346262411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1903,8 +1901,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 649112263}
-  _blade: {fileID: 1902330530}
   playerID: 1
+  _blade: {fileID: 1902330530}
   mainCamera: {fileID: 1760112025}
   bladeCollider: {fileID: 1902330531}
   bladeTrail: {fileID: 359773793}
@@ -2970,8 +2968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1232960364}
-  _blade: {fileID: 346262410}
   playerID: 0
+  _blade: {fileID: 346262410}
   mainCamera: {fileID: 963194227}
   bladeCollider: {fileID: 346262411}
   bladeTrail: {fileID: 973021584}
@@ -4594,8 +4592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliceForce: 5
-  minSliceVelocity: 0.01
-  angleThreshold: 90
 --- !u!135 &1902330531
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5210,6 +5206,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2172656579975917402, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403956742548115541, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}
+      propertyPath: maxAngle
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403956742548115541, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}
+      propertyPath: minAngle
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403956742548115541, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}
+      propertyPath: bombChance
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6403956742548115541, guid: a2d17aade384d654ca8f4c4d7e79c0b6, type: 3}

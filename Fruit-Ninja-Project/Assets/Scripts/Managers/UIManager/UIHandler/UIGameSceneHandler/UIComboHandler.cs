@@ -47,12 +47,13 @@ public class UIComboHandler
         SetComboTextStringValue(playerID,comboCount);        
     }
     private void ActivateComboText(int playerID)
-    {
-        comboText[playerID].gameObject.SetActive(true);       
+    {   
+        comboText[playerID]?.gameObject.SetActive(true);       
     }
     public void DeactivateComboText(int playerID)
-    {
-        comboText[playerID].gameObject.SetActive(false);        
+    {   
+        
+        comboText[playerID]?.gameObject.SetActive(false);        
     }
     private void ComboTextPosition(int playerID,TextMeshProUGUI[] comboText, Vector3 bladePosition)
     {

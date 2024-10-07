@@ -14,15 +14,31 @@ public class BombController : InteractObjectController
         this.bombMovement = bombMovement;
         this.bombExplosionParticle = bombExplosionParticle;        
     }
-    private void Start()
+    protected override void OnEnable()
     {
-        InitializeBomb();
+        base.OnEnable();
+        StartCoroutine(InitializeBombAfterDelay());
+    }
+    private System.Collections.IEnumerator InitializeBombAfterDelay()
+    {
+        yield return null;
+        InitializeBombComponenets();
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (isBombSliced)
+        {
+            isBombSliced = false;
+        }
+        
+
     }
     private void Update()
     {
-        CheckAndDestroyBomb();
+        DeactivateBombWhenBombIsSliced();
         CheckBombMovementWhenGameIsPlay();
-        DestroyBombWhenGameIsOver();
+        DeactivateBombWhenGameIsOver();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -34,42 +50,63 @@ public class BombController : InteractObjectController
 
         }
     }
-    private void InitializeBomb()
+    private void InitializeBombComponenets()
     {
-        bombExplosionParticle.Stop();
-        PlayBombFuseSound();
-        DestroyGameObjectDepentOnTime();
+        StopExplosionParticle();
+        PlayBombFuseSound();        
         EnabledBombCollider();
+        MakeBombDynamicRigidbody();
         BombMovementWhenGameIsStart();
     }
     private void HandleBladeCollision()
     {
-        isBombSliced = true;        
-        bombMovement.ObjectRigidbodyIsKinematic();
+        isBombSliced = true;
+        MakeBombKinematicRigidbody();
         DisabledBombCollider();
-        bombExplosionParticle.Play();
+        PlayExplosionPaticle();
         StopBombFuseSound();
         PlayBombExplosionSound();
         GameManager.Instance.GameOver();
     }
-    private void DestroyBombWhenBombIsSliced()
+    private void DeactivateBombDelay()
     {
-        Destroy(gameObject, 0.85f);
+        Invoke("DeactivateBomb", 0.85f);
     }
-    private void DestroyBombWhenGameIsOver()
+    private void DeactivateBomb()
+    {
+        gameObject.SetActive(false);
+    }
+    private void PlayExplosionPaticle()
+    {
+        bombExplosionParticle.Play();
+    }
+    private void StopExplosionParticle()
+    {
+        bombExplosionParticle.Stop();
+    }
+    private void MakeBombKinematicRigidbody()
+    {
+        bombMovement.interactObjectRigidbody.isKinematic = true; 
+    }
+    private void MakeBombDynamicRigidbody()
+    {
+        bombMovement.interactObjectRigidbody.isKinematic = false;
+    }
+    private void DeactivateBombWhenGameIsOver()
     {
         if (GameManager.Instance.GameIsOver && !isBombSliced)
         {
             StopBombFuseSound();
-            Destroy(gameObject);
+            StopAllCoroutines();
+            DeactivateBomb();
         }        
     }
     
-    private void CheckAndDestroyBomb()
+    private void DeactivateBombWhenBombIsSliced()
     {
         if (isBombSliced)
         {
-            DestroyBombWhenBombIsSliced();
+            DeactivateBombDelay();
         }
     }
     private void CheckBombMovementWhenGameIsPlay()

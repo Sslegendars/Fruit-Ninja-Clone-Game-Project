@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7122267049808735484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5121054038999116781}
+  - component: {fileID: 5733283827142411265}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5121054038999116781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122267049808735484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.2666035, y: -0.00000020861626, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5733283827142411265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122267049808735484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1ff8fd972606f4589245b2bd0ed5a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: CoconutFruit
+    prefab: {fileID: 7597558070326851859, guid: dcfb37702a6b80d4fabbf7733e65a21d, type: 3}
+    size: 20
+  - tag: AppleFruit
+    prefab: {fileID: 2490080353777240482, guid: 12e9ad41bdecd164fb11a9bc8ad50a1f, type: 3}
+    size: 20
+  - tag: OrangeFruit
+    prefab: {fileID: 9158403172923623707, guid: d18d02a2ee79c9d4ea1ff34ebef8c2b6, type: 3}
+    size: 20
+  - tag: PearFruit
+    prefab: {fileID: 8793112282072585368, guid: 4ca65bcd6f62a234089410371a3ad813, type: 3}
+    size: 20
+  - tag: WatermelonFruit
+    prefab: {fileID: 5878307410493216480, guid: b146b49fca2877c49994af0398e8f895, type: 3}
+    size: 20
+  - tag: Bomb
+    prefab: {fileID: 4291279714850261187, guid: 5e182d0a5ec057e40911638d5af666f5, type: 3}
+    size: 20
