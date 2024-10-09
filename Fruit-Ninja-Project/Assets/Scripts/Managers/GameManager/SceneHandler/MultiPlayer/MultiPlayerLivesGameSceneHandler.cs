@@ -10,7 +10,7 @@ public class MultiPlayerLivesGameSceneHandler : ISceneHandler,ISceneHandlerResta
        multiPlayerWinAndLoseData = new MultiPlayerWinAndLoseData();     
     }   
     public void Initialize()    
-    {
+    {   
         firstPlayerLives = GameObject.Find("FirstPlayer").GetComponent<PlayerLives>();
         secondPlayerLives = GameObject.Find("SecondPlayer").GetComponent<PlayerLives>();        
     }

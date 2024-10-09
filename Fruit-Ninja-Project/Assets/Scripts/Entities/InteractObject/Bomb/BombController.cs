@@ -5,6 +5,8 @@ public class BombController : InteractObjectController
     private Collider bombCollider;
     private BombMovement bombMovement;
     private ParticleSystem bombExplosionParticle;
+
+    private const float inactiveDelay = 0.85f;
     
     private bool isBombSliced = false;
     
@@ -22,7 +24,7 @@ public class BombController : InteractObjectController
     private System.Collections.IEnumerator InitializeBombAfterDelay()
     {
         yield return null;
-        InitializeBombComponenets();
+        InitializeBombComponents();
     }
     protected override void OnDisable()
     {
@@ -39,18 +41,8 @@ public class BombController : InteractObjectController
         DeactivateBombWhenBombIsSliced();
         CheckBombMovementWhenGameIsPlay();
         DeactivateBombWhenGameIsOver();
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Blade"))
-        {
-            PlayerLives playerlives = other.GetComponentInParent<PlayerLives>();
-            playerlives.Zerolives();
-            HandleBladeCollision();         
-
-        }
-    }
-    private void InitializeBombComponenets()
+    }   
+    private void InitializeBombComponents()
     {
         StopExplosionParticle();
         PlayBombFuseSound();        
@@ -58,8 +50,10 @@ public class BombController : InteractObjectController
         MakeBombDynamicRigidbody();
         BombMovementWhenGameIsStart();
     }
-    private void HandleBladeCollision()
+    protected override void HandleBladeCollision(Collider bladecollider)
     {
+        PlayerLives playerlives = bladecollider.GetComponentInParent<PlayerLives>();
+        playerlives.Zerolives();
         isBombSliced = true;
         MakeBombKinematicRigidbody();
         DisabledBombCollider();
@@ -70,7 +64,7 @@ public class BombController : InteractObjectController
     }
     private void DeactivateBombDelay()
     {
-        Invoke("DeactivateBomb", 0.85f);
+        Invoke("DeactivateBomb", inactiveDelay);
     }
     private void DeactivateBomb()
     {

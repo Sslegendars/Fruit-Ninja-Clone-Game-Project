@@ -6,24 +6,17 @@ public class MultiPlayerControllerDepentOnLives : PlayerControllerDepentOnLives
     {
         CallMultiPlayerTouchHandler();
     }
-    private void Update()
+    protected override void HandleTouchInput()
     {
-        InputBehaviourContidion();
-    }
-    private void InputBehaviourContidion()
-    {
-        if(playerLives.Lives > 0)
+        if (multiPlayerTouchHandler != null)
         {
-            HandleTouchInput();
+            multiPlayerTouchHandler.CheckHandleInput(HandleInput, playerID);
         }
     }
-    private void HandleTouchInput()
-    {
-        multiPlayerTouchHandler.CheckHandleInput(HandleInput, playerID);
-    }
+
     private void CallMultiPlayerTouchHandler()
     {
         multiPlayerTouchHandler = new MultiPlayerTouchHandler();
     }
-   
+
 }

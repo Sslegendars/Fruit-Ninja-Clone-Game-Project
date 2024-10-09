@@ -1,24 +1,14 @@
 using UnityEngine;
 public class SinglePlayerController : PlayerControllerDepentOnLives
 {
-    private void Update()
+    protected override void HandleTouchInput()
     {
-        InputBehaviourCondition();
-    }
-
-    private void InputBehaviourCondition()
-    {
-        if (playerLives.Lives > 0)
-        {
-            CheckHandleInput();
-        }
-    }
-    private void CheckHandleInput()
-    {
-        if(Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             HandleInput(touch);
         }
-    }    
+    }
+
+
 }

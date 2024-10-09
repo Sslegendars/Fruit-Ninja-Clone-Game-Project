@@ -16,7 +16,7 @@ public class UIComboHandler
                 SetComboText(playerID,comboCount, Color.green);
                 break;
             case 20:
-                SetComboText(playerID,comboCount, Color.gray);
+                SetComboText(playerID,comboCount, Color.blue);
                 break;
             case 30:
                 SetComboText(playerID,comboCount, Color.yellow);
@@ -48,12 +48,13 @@ public class UIComboHandler
     }
     private void ActivateComboText(int playerID)
     {   
-        comboText[playerID]?.gameObject.SetActive(true);       
+        
+        comboText?[playerID].gameObject.SetActive(true);       
     }
     public void DeactivateComboText(int playerID)
     {   
-        
-        comboText[playerID]?.gameObject.SetActive(false);        
+       
+        comboText?[playerID].gameObject.SetActive(false);        
     }
     private void ComboTextPosition(int playerID,TextMeshProUGUI[] comboText, Vector3 bladePosition)
     {
@@ -62,11 +63,13 @@ public class UIComboHandler
         comboText[playerID].transform.position = screenPosition;
     }
     private void SetComboTextColor(int playerID,Color color)
-    {
+    {   
+        if(comboText != null)
         comboText[playerID].color = color;
     }
     private void SetComboTextStringValue(int playerID,int comboCount)
     {
+        if(comboText != null)
         comboText[playerID].text = comboCount.ToString() + "\nPOINTS";
     }
 }

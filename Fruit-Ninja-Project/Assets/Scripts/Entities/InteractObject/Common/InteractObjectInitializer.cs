@@ -1,10 +1,13 @@
 using UnityEngine;
-public class InteractObjectInitializer : MonoBehaviour
-{   
+public class InteractObjectInitializer<TMovement, TController> : MonoBehaviour
+    where TMovement : InteractObjectMovement
+    where TController : InteractObjectController
+{
     [SerializeField]
-    protected InteractObjectMovement interactObjectMovement;
+    protected TMovement interactObjectMovement;
     [SerializeField]
-    protected InteractObjectController interactObjectController;
+    protected TController interactObjectController;
+
     protected Collider _collider;
     protected Rigidbody interactObjectRigidbody;
 
@@ -12,6 +15,7 @@ public class InteractObjectInitializer : MonoBehaviour
     {
         InitializeComponents();
     }
+
     protected virtual void InitializeComponents()
     {
         _collider = GetComponent<Collider>();
@@ -19,3 +23,4 @@ public class InteractObjectInitializer : MonoBehaviour
         interactObjectMovement.Initialize(interactObjectRigidbody);
     }
 }
+

@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-
 public class GameManager : MonoSingleton<GameManager>
 {
     public bool GameIsOver { get; private set; } = false;
@@ -44,11 +43,11 @@ public class GameManager : MonoSingleton<GameManager>
         switch (scene.name)
         {
             case "MainMenuScene":
-                sceneHandler = new MainMenuSceneHandler();
+                sceneHandler = null;
                 SoundToBePlayedWhenMenuSceneStarts();
                 break;
             case "MultiPlayerMenuScene":
-                sceneHandler = new MultiPlayerMenuSceneHandler();
+                sceneHandler = null;
                 SoundToBePlayedWhenMenuSceneStarts();
                 break;
             case "SinglePlayerGameScene":
@@ -68,7 +67,7 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             default:
                 break;
-        }
+        }        
     }
 
     private void InitializeCurrentSceneHandler()
@@ -97,7 +96,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         yield return new WaitForSeconds(1);
         ShowGameover();
-        sceneHandler.GameOver();
+        sceneHandler?.GameOver();
     }
 
     public void RestartTheGame()
@@ -128,12 +127,12 @@ public class GameManager : MonoSingleton<GameManager>
     // Spawn Management Methods
     private void ActivatedSpawnManager()
     {
-        SpawnManager.Instance.gameObject.SetActive(true);
+        SpawnManager.Instance.gameObject?.SetActive(true);
     }
 
     private void DeactivetedSpawnManager()
     {
-        SpawnManager.Instance.gameObject.SetActive(false);
+        SpawnManager.Instance.gameObject?.SetActive(false);
     }
 
     // UI and Panel Methods

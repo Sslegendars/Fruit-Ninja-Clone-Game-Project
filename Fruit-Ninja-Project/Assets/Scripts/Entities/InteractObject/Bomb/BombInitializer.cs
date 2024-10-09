@@ -1,15 +1,12 @@
 using UnityEngine;
-public class BombInitializer : InteractObjectInitializer
-{   
+public class BombInitializer : InteractObjectInitializer<BombMovement, BombController>
+{
     [SerializeField]
-    private ParticleSystem bombExplosionParticle; 
-    protected BombController bombController;
-    protected BombMovement bombMovement;
+    private ParticleSystem bombExplosionParticle;
+
     protected override void InitializeComponents()
     {
         base.InitializeComponents();
-        bombMovement = (BombMovement)interactObjectMovement;
-        bombController = (BombController)interactObjectController;
-        bombController.Initialize(_collider,bombMovement,bombExplosionParticle);
+        interactObjectController.Initialize(_collider, interactObjectMovement, bombExplosionParticle);
     }
 }

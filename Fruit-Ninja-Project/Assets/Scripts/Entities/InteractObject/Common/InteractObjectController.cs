@@ -1,19 +1,26 @@
 using UnityEngine;
 using System.Collections;
 
-public class InteractObjectController : MonoBehaviour
+public abstract class InteractObjectController : MonoBehaviour
 {   
     
     private const float maxLifeTime = 6f;
     protected virtual void OnEnable()
     {
-        DeactivateGameObjectDepentOnTime();
+        DeactivateGameObjectAfterDelay();
     }
     protected virtual void OnDisable()
     {
         StopCoroutine(DeactivateGameObjectCoroutine());
     }
-    private void DeactivateGameObjectDepentOnTime()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Blade"))
+        {
+            HandleBladeCollision(other);
+        }
+    }
+    private void DeactivateGameObjectAfterDelay()
     {
         StartCoroutine(DeactivateGameObjectCoroutine());
     }
@@ -23,6 +30,6 @@ public class InteractObjectController : MonoBehaviour
         gameObject.SetActive(false);
         
     }
-    
+    protected abstract void HandleBladeCollision(Collider bladeCollider);
 
 }

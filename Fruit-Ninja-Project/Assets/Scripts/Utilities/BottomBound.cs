@@ -14,7 +14,6 @@ public class BottomBound : MonoBehaviour
         if(GameManager.Instance.GameIsOver == false)
         {
             if (
-            fruitCollider.CompareTag("Fruit") ||
             fruitCollider.CompareTag("AppleFruit") ||
             fruitCollider.CompareTag("CoconutFruit") ||
             fruitCollider.CompareTag("OrangeFruit") ||

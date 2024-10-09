@@ -1,8 +1,6 @@
 using UnityEngine;
-public class FruitInitializer : InteractObjectInitializer
+public class FruitInitializer : InteractObjectInitializer<FruitMovement, FruitController>
 {
-    protected FruitMovement fruitMovement;
-    protected FruitController fruitController;
     [SerializeField]
     private GameObject fruitJuice;
     [SerializeField]
@@ -13,12 +11,10 @@ public class FruitInitializer : InteractObjectInitializer
     private GameObject slicedFruitDown;
     [SerializeField]
     private GameObject slicedFruitUp;
-    
+
     protected override void InitializeComponents()
     {
         base.InitializeComponents();
-        fruitMovement = (FruitMovement)interactObjectMovement;
-        fruitController = (FruitController)interactObjectController;
-        fruitController.Initialize(_collider, fruitMovement,fruitJuice, wholeFruit, slicedFruit, slicedFruitDown, slicedFruitUp);
+        interactObjectController.Initialize(_collider, interactObjectMovement, fruitJuice, wholeFruit, slicedFruit, slicedFruitDown, slicedFruitUp);
     }
 }

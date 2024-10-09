@@ -5,18 +5,13 @@ public class MultiPlayerControllerDepentOnTime : PlayerController
     private void Start()
     {
         CallMultiPlayerTouchHandler();
-    }
-    private void Update()
-    {
-        InputBehaviourContidion();
-    }
-    private void InputBehaviourContidion()
-    {   
+    }   
+    protected override void InputBehaviour()
+    {         
         HandleTouchInput();
-
     }
     private void HandleTouchInput()
-    {
+    {   
         multiPlayerTouchHandler.CheckHandleInput(HandleInput, playerID);
     }
     private void CallMultiPlayerTouchHandler()

@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public abstract class BaseUsingScoreGameSceneHandler: ISceneHandler, ISceneHandlerFruitCutUpdatable, ISceneHandlerUpdatable,ISceneHandlerResumable
 {
     protected Blade[] _blades;
@@ -63,6 +62,7 @@ public abstract class BaseUsingScoreGameSceneHandler: ISceneHandler, ISceneHandl
             {   
                 int pointsToAdd = (comboCount - comboSystem.minmNumOfFruitsToBeCut) * 10;
                 UIManager.Instance.comboHandler.ShowComboText(pointsToAdd, playerID, _blades[playerID].transform.position);
+                AudioManager.Instance.Play(SoundName.ComboAddPointsSound);
                 return pointsToAdd;
             }
             else
@@ -81,7 +81,7 @@ public abstract class BaseUsingScoreGameSceneHandler: ISceneHandler, ISceneHandl
             scoreManager.UpdateScore(playerID, 1);
             comboSystem.AddToCombo();
         }
-    }
+    }    
     public abstract void Update();
     public abstract void GameOver();
     public abstract void ResumeTheGame();

@@ -15,9 +15,7 @@ public class Blade : MonoBehaviour
     private Vector3 previousDirection;
 
     public bool Slicing { get; private set; }
-    public Vector3 direction { get; private set; }
-
-    private Vector3 lastTouchPosition; 
+    public Vector3 direction { get; private set; }    
 
     public Camera MainCamera
     {
@@ -49,7 +47,6 @@ public class Blade : MonoBehaviour
 
     public void StartSlicing(Vector2 touchPosition)
     {
-        lastTouchPosition = touchPosition;
         Vector3 newPosition = BladeNewPosition(touchPosition);
         transform.position = newPosition;
         Slicing = true;
@@ -59,13 +56,10 @@ public class Blade : MonoBehaviour
 
     private void EnableBladeCollider()
     {
-        bladeCollider.enabled = true;
-    }
-
-    private void DisableBladeCollider()
-    {
-        if (BladeCollider != null)
-            bladeCollider.enabled = false;
+        if (bladeCollider != null)
+        {
+            bladeCollider.enabled = true;
+        }
     }
 
     public void StopSlicing()
@@ -74,34 +68,45 @@ public class Blade : MonoBehaviour
         DisableBladeCollider();
     }
 
+    private void DisableBladeCollider()
+    {
+        if (bladeCollider != null)
+        {
+            bladeCollider.enabled = false;
+        }
+    }
+
     public void ContinueSlicing(Vector2 touchPosition)
     {
         Vector3 newPosition = BladeNewPosition(touchPosition);
         direction = newPosition - transform.position;
-
         float velocity = direction.magnitude / Time.deltaTime;
-        bladeCollider.enabled = velocity > minSliceVelocity;
-        transform.position = newPosition;
-        CheckAngleChangeAndPlayMusic();
-        lastTouchPosition = touchPosition;
+
+        if (velocity > minSliceVelocity)
+        {
+            bladeCollider.enabled = true;
+            transform.position = newPosition;
+            CheckAngleChangeAndPlayMusic();
+        }
+        else
+        {
+            bladeCollider.enabled = false; 
+        }
     }
 
     private Vector3 BladeNewPosition(Vector2 touchPosition)
     {
         Vector3 newPosition = mainCamera.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, mainCamera.nearClipPlane));
-        newPosition.z = -2f;
+        newPosition.z = -2f; 
         return newPosition;
     }
+
     private void CheckAngleChangeAndPlayMusic()
     {
-        if (IsInSinglePlayerScene())
+        if (IsInSinglePlayerScene() && HasDirectionChangedSignificantly())
         {
-            if (HasDirectionChangedSignificantly())
-            {
-                PlayBladeSwipeSound();
-            }
-
-            previousDirection = direction; 
+            PlayBladeSwipeSound();
+            previousDirection = direction;
         }
     }
 
@@ -115,16 +120,15 @@ public class Blade : MonoBehaviour
         if (previousDirection != Vector3.zero)
         {
             float angleDifference = Vector3.Angle(previousDirection, direction);
-            return angleDifference > angleThreshold; 
+            return angleDifference > angleThreshold;
         }
 
-        return false; 
+        return false;
     }
 
     private void PlayBladeSwipeSound()
     {
         AudioManager.Instance.PlayRandomBladeSwipeSound();
-        
     }
-    
+
 }

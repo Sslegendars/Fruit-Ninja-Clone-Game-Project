@@ -24,6 +24,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     public Quaternion prefabSpawnRotation;
 
     private readonly string[] fruitTags = { "CoconutFruit", "AppleFruit", "OrangeFruit", "PearFruit", "WatermelonFruit"};
+    private readonly string bombTag = "Bomb";
     protected override void Awake()
     {
         base.Awake();
@@ -104,7 +105,7 @@ public class SpawnManager : MonoSingleton<SpawnManager>
     {
         if (Random.value < bombChance)
         {
-            return "Bomb";
+            return bombTag;
         }        
         int randomIndex = Random.Range(0, fruitTags.Length);
         return fruitTags[randomIndex]; 

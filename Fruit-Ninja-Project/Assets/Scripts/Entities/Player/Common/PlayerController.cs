@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public abstract class PlayerController : MonoBehaviour
 {
     protected int playerID;
     protected Blade _blade;
@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
         get => playerID;
         set => playerID = value;
     }
+    private void Update()
+    {   
+        if(GameManager.Instance.GameIsOver != true)
+        InputBehaviour();
+    }
+
     protected virtual void HandleInput(Touch touch)
     {
         if (touch.phase == TouchPhase.Began)
@@ -28,9 +34,12 @@ public class PlayerController : MonoBehaviour
         else if (_blade.Slicing && (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary))
         {
             _blade.ContinueSlicing(touch.position);
-
         }
     }
+
+    protected abstract void InputBehaviour();
+   
+        
 }
 
 

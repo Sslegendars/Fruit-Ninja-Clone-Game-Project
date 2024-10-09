@@ -69,15 +69,7 @@ public class FruitController : InteractObjectController
     {
         FruitMovementWhenGameIsPlay();
         DestroyFruitWhenGameIsOver();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Blade"))
-        {
-            HandleBladeCollision(other);
-        }
-    }
+    }    
 
     // Component Initialization
     protected virtual void InitializeComponents()
@@ -89,7 +81,7 @@ public class FruitController : InteractObjectController
         EnableFruitCollider();
     }
 
-    private void HandleBladeCollision(Collider bladeCollider)
+    protected override void HandleBladeCollision(Collider bladeCollider)
     {
         Blade blade = bladeCollider.GetComponent<Blade>();
         Slice(blade.direction, blade.transform.position, blade.sliceForce);

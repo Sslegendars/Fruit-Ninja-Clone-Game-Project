@@ -12,7 +12,7 @@ public class UIManager : MonoSingleton<UIManager>
     public UIMainMenuButtonHandler mainMenuButtonHandler;
     public UIMultiPlayerMenuButtonHandler multiPlayerMenuButtonHandler;
 
-    // Players panels handler
+    // Player panels handler
     public UISinglePlayerPanelHandler singlePlayerPanelHandler;
     public UIMultiPlayerPanelHandler multiPlayerPanelHandler;
 
