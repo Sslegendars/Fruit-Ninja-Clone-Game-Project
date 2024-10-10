@@ -19,5 +19,5 @@ This game was developed using Unity version 2022.3.14f1.
 - **Purpose:** Two players compete against each other in the same arena, trying to achieve the highest score.
 - **Ending Condition:** The player with the most points in a given time wins
 - **Differences:** It is a competitive mode and is score-based. Time is limited.
-## GamePlay
+## Gameplay
 ![Loading Animation](https://github.com/Sslegendars/Fruit-Ninja-Clone-Game-Project/blob/main/Fruit-Ninja-Clone-Project-GamePlay.gif)
