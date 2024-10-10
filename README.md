@@ -1,3 +1,3 @@
 # Fruit-Ninja-Clone-Game-Project
  
-![Uploading Screenrecorder-2024-10-10-12-37-06-806.gif…]()
+![Loading Animation](https://github.com/Sslegendars/Fruit-Ninja-Clone-Game-Project/blob/main/Fruit-Ninja-Clone-Project-GamePlay.gif)
